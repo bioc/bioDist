@@ -24,3 +24,5 @@ mutualInfo <- function(x, nbin=10, diag=FALSE, upper=FALSE)
    rvec
 }
 
+MIdist = function(x, nbin=10, diag=FALSE, upper=FALSE) 
+  1 - (1 - exp(-2*mutualInfo(x, nbin, diag, upper)))^.5

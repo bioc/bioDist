@@ -17,14 +17,13 @@ euc(x, diag = FALSE, upper = FALSE)
 \value{
  Pairwise Euclidean distance object
 }
-\references{  }
 \author{ Beiying Ding }
-\note{ Requires the 'stats' package }
 
-
-\seealso{ \code{\link{spearman.dist}}, \code{\link{tau.dist}},\code{\link{man}},\code{\link{KLdist.matrix}},\code{\link{KLD.matrix}},\code{\link{mutualInfo}}}
+\seealso{ \code{\link{spearman.dist}}, \code{\link{tau.dist}},
+ \code{\link{man}},\code{\link{KLdist.matrix}},\code{\link{KLD.matrix}},
+ \code{\link{mutualInfo}}}
 \examples{
- x <- matrix(rnorm(200),ncol=5)
+ x <- matrix(rnorm(200), nrow=5)
  euc(x)
 }
 \keyword{  }

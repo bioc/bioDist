@@ -18,13 +18,11 @@ cor.dist(x, abs = TRUE, diag = FALSE, upper = FALSE)
 \value{
   Pairwise Pearson correlational distance object
 }
-\references{  }
 \author{Beiying Ding} 
-\note{  }
 
 \seealso{ \code{\link{spearman.dist}}, \code{\link{tau.dist}},\code{\link{euc}},\code{\link{man}},\code{\link{KLdist.matrix}},\code{\link{KLD.matrix}},\code{\link{mutualInfo}} }
 \examples{
- x <- matrix(rnorm(200),ncol=5)
+ x <- matrix(rnorm(200), nrow=5)
  cor.dist(x)
 }
 

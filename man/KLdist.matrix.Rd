@@ -20,14 +20,13 @@ KLdist.matrix(x, nbin = 10, symmetrize = TRUE, diag = FALSE, upper = FALSE)
 \value{
 Pairwsie KLD object
 }
-\references{ }
 \author{ Beiying Ding}
-\note{ }
 
-\seealso{ \code{\link{cor.dist}}, \code{link{spearman.dist}}, \code{\link{tau.dist}},\code{\link{euc}},
+\seealso{ \code{\link{cor.dist}}, \code{\link{spearman.dist}}, 
+\code{\link{tau.dist}},\code{\link{euc}},
 \code{\link{man}},\code{\link{KLD.matrix}},\code{\link{mutualInfo}} } 
 \examples{
- x <- matrix(rnorm(100),ncol=5)
+ x <- matrix(rnorm(100), nrow=5)
  KLdist.matrix(x,symmetrize=TRUE, nbin=3) 
 }
-\keyword{  }
+\keyword{manip}

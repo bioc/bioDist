@@ -10,7 +10,7 @@ spearman.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
    rvec <- rvec[upper.tri(rvec,diag=diag)]
   else
      rvec <- rvec[lower.tri(rvec,diag=diag)]
-  attributes(rvec) <- list(Size = nr, Labels = colnames(x),
+  attributes(rvec) <- list(Size = nr, Labels = rownames(x),
                               Diag = diag, Upper = upper, methods =
                               "spearman", class = "dist")
    rvec
