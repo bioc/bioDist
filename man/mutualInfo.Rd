@@ -10,14 +10,14 @@ mutualInfo(x, nbin = 10,  diag = FALSE, upper = FALSE)
 MIdist(x, nbin = 10,  diag = FALSE, upper = FALSE)
 }
 \arguments{
-  \item{x}{ n by p matrix }
+  \item{x}{an n by p matrix }
   \item{nbin}{number of bins to calculate discrete probabilities }
   \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed }
   \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed }
 }
 \details{
- For \code{mutualInfo} each row of \code{x} the data are divided into 
- \code{nbins} groups and then the mutual information is computed, treating 
+ For \code{mutualInfo} each row of \code{x} is divided into 
+ \code{nbin} groups and then the mutual information is computed, treating 
  the data as if they were discrete.
 
  For \code{MIdist} we use the transformation proposed by Joe (1989),

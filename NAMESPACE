@@ -1,1 +1,1 @@
-export("cor.dist","spearman.dist","tau.dist","euc","man","mutualInfo","KLdist.matrix","KLD.matrix","closest.top")
+export("cor.dist","spearman.dist","tau.dist","euc","man","mutualInfo","KLdist.matrix","KLD.matrix","closest.top", "MIdist")
