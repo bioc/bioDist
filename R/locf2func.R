@@ -1,5 +1,4 @@
-"locf2func" <-
-function(x, ...) {
+locf2func <- function(x, ...) {
     require(locfit) || stop("can only be used if locfit library is available")
     l = locfit(~x, ...)
     den1 <- preplot(l,...)

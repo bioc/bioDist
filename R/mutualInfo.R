@@ -1,7 +1,6 @@
-"mutualInfo" <-
-function(x, nbin=10, diag=FALSE, upper=FALSE)
+mutualInfo <- function(x, nbin=10, diag=FALSE, upper=FALSE)
 {
-   x <- t(as.matrix(x))
+   x <- as.matrix(x)
    nc <- ncol(x)
    nr <- nrow(x)
    clist <- vector("list", length=nr)

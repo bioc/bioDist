@@ -1,8 +1,7 @@
-"tau.dist" <-
-function(x, abs=TRUE,diag=FALSE, upper=FALSE)
+tau.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
 {
-  nc <- ncol(x)
-  rvec <- cor(x, method="kendall")
+  nr <- nrow(x)
+  rvec <- cor(t(x), method="kendall")
   if(abs)
    rvec <- 1-abs(rvec)
   else
@@ -11,7 +10,7 @@ function(x, abs=TRUE,diag=FALSE, upper=FALSE)
    rvec <- rvec[upper.tri(rvec,diag=diag)]
   else
      rvec <- rvec[lower.tri(rvec,diag=diag)]
-  attributes(rvec) <- list(Size = nc, Labels = colnames(x),
+  attributes(rvec) <- list(Size = nr, Labels = colnames(x),
                               Diag = diag, Upper = upper, methods =
                               "kendall", class = "dist")
    rvec

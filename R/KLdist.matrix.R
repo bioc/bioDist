@@ -1,7 +1,6 @@
-"KLdist.matrix" <-
-function(x, nbin=10, symmetrize=TRUE, diag=FALSE, upper=FALSE)
+KLdist.matrix <- function(x, nbin=10, symmetrize=TRUE, diag=FALSE, upper=FALSE)
 {
-   x <- t(as.matrix(x))
+   x <- as.matrix(x)
    nc <- ncol(x)
    nr <- nrow(x)
    clist <- vector("list", length=nr)
