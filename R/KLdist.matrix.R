@@ -1,30 +1,28 @@
-KLdist.matrix <- function(x, nbin=10, symmetrize=TRUE, diag=FALSE, upper=FALSE)
+KLdist.matrix <- function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE)
 {
    x <- as.matrix(x)
    nc <- ncol(x)
    nr <- nrow(x)
    clist <- vector("list", length=nr)
-    
+   me <- .Machine$double.eps
+ 
+   ##note: we combine x and y before binning, to make sure we span
+   ##   the range of the data, and we add machine epsilon to 
+   ##   protect against +/- Inf; this could use some work.
    appfun <- function(x,y)
     { 
       
-      breaks.x <- hist(x,breaks=nbin,freq=FALSE,plot=FALSE)
-      breaks.x <- c(breaks.x$breaks[1],breaks.x$breaks[-1][breaks.x$intensities>0])
-      
-      breaks.y <- hist(y,breaks=nbin,freq=FALSE,plot=FALSE)
-      breaks.y <- c(breaks.y$breaks[1],breaks.y$breaks[-1][breaks.y$intensities>0])
+      breaks.x <- hist(c(x,y) ,breaks=nbin,freq=FALSE,plot=FALSE)$breaks
       
       temp1 <- table(cut(y,breaks.x))/nc
-      ind1 <- temp1>0
-      temp1 <- temp1[ind1]
-      temp2 <- table(cut(x,breaks.y))/nc
-      ind2 <- temp2>0
-      temp2 <- temp2[ind2]
+      temp1 <- temp1+me
+      temp2 <- table(cut(x,breaks.x))/nc
+      temp2 <- temp2 + me
       
-      dist <- sum(log(temp2)*temp2) - sum(log(table(cut(y,breaks=breaks.y))[ind2>0]/nc)*temp2)
+      dist <- sum(log(temp2/temp1)*temp2) 
       if(symmetrize)
        {
-        dist <- (dist + sum(log(temp1)*temp1)-sum(log(table(cut(x,breaks=breaks.x))[ind1>0]/nc)*temp1))/2
+        dist <- (dist + sum(log(temp1/temp2)*temp1))/2
          }
       return(dist)   
     }

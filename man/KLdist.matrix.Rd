@@ -5,7 +5,7 @@
 Calculate KLD by binning
 }
 \usage{
-KLdist.matrix(x, nbin = 10, symmetrize = TRUE, diag = FALSE, upper = FALSE)
+KLdist.matrix(x, nbin = 10, symmetrize = FALSE, diag = FALSE, upper = FALSE)
 }
 \arguments{
   \item{x}{ n by p matrix }
