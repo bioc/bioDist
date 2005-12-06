@@ -1,4 +1,7 @@
-spearman.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
+setGeneric("spearman.dist", function(x, ...) standardGeneric("spearman.dist"))
+
+setMethod("spearman.dist", signature=signature("matrix"), 
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE)
 {
   nr <- nrow(x)
   rvec <- cor(t(x), method="spearman")
@@ -14,5 +17,8 @@ spearman.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
                               Diag = diag, Upper = upper, methods =
                               "spearman", class = "dist")
    rvec
-}
+} )
 
+setMethod("spearman.dist", signature=signature("exprSet"),
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE) 
+        spearman.dist(x@exprs, abs, diag, upper))

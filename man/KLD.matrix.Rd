@@ -1,21 +1,24 @@
 \name{KLD.matrix}
 \alias{KLD.matrix}
+\alias{KLD.matrix,matrix-method}
+\alias{KLD.matrix,exprSet-method}
 \title{Continuous version of Kullback-Leibler Distance (KLD) }
 \description{
 Calculate KLD by estimating by smoothing 
  \eqn{\log( f(x)/g(x))*f(x)}{log( f(x)/g(x))*f(x)} and then integrating.
 }
 \usage{
-KLD.matrix(x, method = c("locfit", "density"), supp = c(-3, 3), 
-     subdivisions = 1000, diag = FALSE, upper = FALSE)
+KLD.matrix(x, \dots) 
 }
 \arguments{
-\item{x}{ n by p matrix }
-  \item{method}{ use \code{locfit} or \code{density} to estimate integrand}
-  \item{supp}{upper and lower limits of the integral }
-  \item{subdivisions}{ subdivisions for the integration}
-  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed }
-  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed }
+\item{x}{ n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{\dots}{arguments passed to \code{KLD.matrix}:
+  \item{method}{ use \code{locfit} or \code{density} to estimate integrand, default is c("locfit", "density")(i.e. both methods)}
+  \item{supp}{upper and lower limits of the integral, default is c(-3, 3) }
+  \item{subdivisions}{ subdivisions for the integration, default is 1000}
+  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
+  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
+}
 }
 \details{
  The pairwise distances between the rows of \code{x} are computed.

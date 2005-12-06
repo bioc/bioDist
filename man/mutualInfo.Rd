@@ -1,19 +1,25 @@
 \name{mutualInfo}
 \alias{mutualInfo}
+\alias{mutualInfo,matrix-method}
+\alias{mutualInfo,exprSet-method}
 \alias{MIdist}
+\alias{MIdist,matrix-method}
+\alias{MIdist,exprSet-method}
 \title{Mutual Information} 
 \description{
 Calculate mutual information via binning
 }
 \usage{
-mutualInfo(x, nbin = 10,  diag = FALSE, upper = FALSE)
-MIdist(x, nbin = 10,  diag = FALSE, upper = FALSE)
+mutualInfo(x, \dots)
+MIdist(x, \dots)
 }
 \arguments{
-  \item{x}{an n by p matrix }
-  \item{nbin}{number of bins to calculate discrete probabilities }
-  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed }
-  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed }
+  \item{x}{an n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{\dots}{arguments passed to \code{mutualInfo} and \code{MIdist}:
+  \item{nbin}{number of bins to calculate discrete probabilities, default is 10 }
+  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
+  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
+}
 }
 \details{
  For \code{mutualInfo} each row of \code{x} is divided into 

@@ -1,4 +1,7 @@
-cor.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
+setGeneric("cor.dist", function(x, ...) standardGeneric("cor.dist"))
+
+setMethod("cor.dist", signature=signature("matrix"), 
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE)
 {
   nr <- nrow(x)
   rvec <- cor(t(x))
@@ -14,5 +17,10 @@ cor.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
                               Diag = diag, Upper = upper, methods =
                               "cor", class = "dist")
    rvec
-}
+} )
+
+setMethod("cor.dist", signature=signature("exprSet"),
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE) cor.dist(x@exprs, abs, diag, upper))
+
+
 

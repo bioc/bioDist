@@ -1,18 +1,22 @@
 \name{KLdist.matrix}
 \alias{KLdist.matrix}
+\alias{KLdist.matrix,matrix-method}
+\alias{KLdist.matrix,exprSet-method}
 \title{ Discrete version of Kullback-Leibler Distance (KLD)}
 \description{
 Calculate KLD by binning
 }
 \usage{
-KLdist.matrix(x, nbin = 10, symmetrize = FALSE, diag = FALSE, upper = FALSE)
+KLdist.matrix(x, \dots)
 }
 \arguments{
-  \item{x}{ n by p matrix }
-  \item{nbin}{number of bins to calculate discrete probabilities } 
-\item{symmetrize}{if TRUE, then symmetrize }
-  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed }
-  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed }
+  \item{x}{ n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{\dots}{arguments passed to \code{KLdist.matrix}:
+  \item{nbin}{number of bins to calculate discrete probabilities, default is 10 } 
+\item{symmetrize}{if TRUE, then symmetrize, default is FALSE }
+  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
+  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
+}
 }
 \details{
 }

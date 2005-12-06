@@ -1,19 +1,23 @@
 \name{man}
 \alias{man}
+\alias{man,matrix-method}
+\alias{man,exprSet-method}
 \title{ Manhattan distance} 
 \description{
 Calculate pairwise Manhattan distances for all rows of a matrix and 
 save as a \code{dist} object.
 }
 \usage{
-man(x, diag = FALSE, upper = FALSE)
+man(x, \dots)
 }
 \arguments{
-  \item{x}{ A matrix. }
+  \item{x}{ A matrix or an exprSet; if x is an exprSet, function workes against its 'exprs' slot }
+  \item{\dots}{arguments passed to \code{man}:
     \item{diag}{If \code{TRUE}, the diagonal of the distance matrix will 
-     be displayed }
+     be displayed, default is FALSE }
   \item{upper}{If \code{TRUE}, the upper triangle of the distance matrix will 
-     be displayed  }
+     be displayed, default is FALSE }
+}
 }
 \details{
  This is just an interface to \code{dist} with the right parameters set.

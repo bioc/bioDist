@@ -1,19 +1,23 @@
 \name{spearman.dist}
 \alias{spearman.dist}
+\alias{spearman.dist,matrix-method}
+\alias{spearman.dist,exprSet-method}
 \title{ Spearman correlational distance }
 \description{
  Calculate pairwise Spearman correlational distances, i.e. 1-SPEAR or 
 1-|SPEAR|, for all rows of a matrix and return a \code{dist} object.
 }
 \usage{
-spearman.dist(x, abs = TRUE, diag = FALSE, upper = FALSE)
+spearman.dist(x, \dots)
 }
 \arguments{
-  \item{x}{ n by p matrix }
-  \item{abs}{ if \code{TRUE}, then 1-|SPEAR| else 1-SPEAR }
-  \item{diag}{if \code{TRUE}, diagonal of the distance matrix will be displayed }
+  \item{x}{ n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{\dots}{arguments passed to \code{spearman.dist}:
+  \item{abs}{ if \code{TRUE}, then 1-|SPEAR| else 1-SPEAR, default is TRUE }
+  \item{diag}{if \code{TRUE}, diagonal of the distance matrix will be displayed, default is FALSE }
   \item{upper}{ if \code{TRUE}, upper triangle of the distance matrix will 
-    be displayed  }
+    be displayed, default is FALSE  }
+}
 }
 \details{
   We call \code{cor} with the appropriate arguments to compute the row-wise

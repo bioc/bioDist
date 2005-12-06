@@ -1,4 +1,7 @@
-KLdist.matrix <- function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE)
+setGeneric("KLdist.matrix", function(x, ...) standardGeneric("KLdist.matrix"))
+
+setMethod("KLdist.matrix", signature=signature("matrix"), 
+    function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE)
 {
    x <- as.matrix(x)
    nc <- ncol(x)
@@ -39,5 +42,8 @@ KLdist.matrix <- function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE)
                             "KLdist", class = "dist")
    rvec
 
-}
+} )
 
+setMethod("KLdist.matrix", signature=signature("exprSet"),
+    function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE) 
+        KLdist.matrix(x@exprs, nbin, symmetrize, diag, upper))

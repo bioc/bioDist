@@ -1,4 +1,7 @@
-tau.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
+setGeneric("tau.dist", function(x, ...) standardGeneric("tau.dist"))
+
+setMethod("tau.dist", signature=signature("matrix"), 
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE)
 {
   nr <- nrow(x)
   rvec <- cor(t(x), method="kendall")
@@ -14,5 +17,8 @@ tau.dist <- function(x, abs=TRUE,diag=FALSE, upper=FALSE)
                               Diag = diag, Upper = upper, methods =
                               "kendall", class = "dist")
    rvec
-}
+} )
 
+setMethod("tau.dist", signature=signature("exprSet"),
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE) 
+        tau.dist(x@exprs, abs, diag, upper))

@@ -1,4 +1,7 @@
-KLD.matrix <- function(x, method=c("locfit", "density"), supp=c(-3,3), 
+setGeneric("KLD.matrix", function(x, ...) standardGeneric("KLD.matrix"))
+
+setMethod("KLD.matrix", signature=signature("matrix"), 
+    function(x, method=c("locfit", "density"), supp=c(-3,3), 
     subdivisions=1000, diag=FALSE, upper=FALSE){
 
    x <- as.matrix(x)
@@ -33,5 +36,9 @@ KLD.matrix <- function(x, method=c("locfit", "density"), supp=c(-3,3),
                             "KLD", class = "dist")
    rvec
 
-}
+})
 
+setMethod("KLD.matrix", signature=signature("exprSet"),
+    function(x, method=c("locfit", "density"), supp=c(-3,3), 
+        subdivisions=1000, diag=FALSE, upper=FALSE) 
+        KLD.matrix(x@exprs, method, supp, subdivisions, diag, upper))

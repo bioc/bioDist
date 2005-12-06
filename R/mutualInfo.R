@@ -1,4 +1,7 @@
-mutualInfo <- function(x, nbin=10, diag=FALSE, upper=FALSE)
+setGeneric("mutualInfo", function(x, ...) standardGeneric("mutualInfo"))
+
+setMethod("mutualInfo", signature=signature("matrix"),
+    function(x, nbin=10, diag=FALSE, upper=FALSE)
 {
    x <- as.matrix(x)
    nc <- ncol(x)
@@ -22,7 +25,20 @@ mutualInfo <- function(x, nbin=10, diag=FALSE, upper=FALSE)
                             Diag = diag, Upper = upper, methods =
                             "mutualInfo", class = "dist")
    rvec
-}
+} )
 
-MIdist = function(x, nbin=10, diag=FALSE, upper=FALSE) 
+setMethod("mutualInfo", signature=signature("exprSet"),
+    function(x, nbin=10, diag=FALSE, upper=FALSE) 
+        mutualInfo(x@exprs, nbin, diag, upper))
+        
+
+setGeneric("MIdist", function(x, ...) standardGeneric("MIdist"))
+
+setMethod("MIdist", signature=signature("matrix"),
+    function(x, nbin=10, diag=FALSE, upper=FALSE) 
   1 - (1 - exp(-2*mutualInfo(x, nbin, diag, upper)))^.5
+)
+
+setMethod("MIdist", signature=signature("exprSet"),
+    function(x, nbin=10, diag=FALSE, upper=FALSE) 
+        MIdist(x@exprs, nbin, diag, upper))
