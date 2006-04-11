@@ -35,7 +35,7 @@ similar to Kendall's tau, \code{\link{tau.dist}}.
 \value{
  An object of class \code{dist} which contains the pairwise distances.
 }
-\ref{H. Joe, Relative Entropy Measures of Multivariate Dependence,
+\references{H. Joe, Relative Entropy Measures of Multivariate Dependence,
 JASA, 1989, 157-164.}
 \author{ Robert Gentleman }
 
