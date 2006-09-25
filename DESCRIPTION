@@ -1,12 +1,12 @@
 Package: bioDist
 Title: Different distance measures
-Version: 1.5.0
+Version: 1.5.1
 Author: B. Ding, R. Gentleman and Vincent Carey
 Description: A collection of software tools for calculating distance
         measures.
 Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
 License: The Artistic License, Version 2.0
-Depends: R (>= 2.0), Biobase
+Depends: R (>= 2.0), methods, Biobase
 Suggests: locfit
 biocViews: Statistics
 
