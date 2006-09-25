@@ -2,6 +2,7 @@
 \alias{man}
 \alias{man,matrix-method}
 \alias{man,exprSet-method}
+\alias{man,ExpressionSet-method}
 \title{ Manhattan distance} 
 \description{
 Calculate pairwise Manhattan distances for all rows of a matrix and 

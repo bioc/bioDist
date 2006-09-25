@@ -2,6 +2,7 @@
 \alias{tau.dist}
 \alias{tau.dist,matrix-method}
 \alias{tau.dist,exprSet-method}
+\alias{tau.dist,ExpressionSet-method}
 \title{ Kendall's tau correlational distance }
 \description{
  Calculate pairwise Kendall's tau correlational distances, i.e. 1-TAU or 1-|TAU|, 

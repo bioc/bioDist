@@ -22,3 +22,7 @@ setMethod("tau.dist", signature=signature("matrix"),
 setMethod("tau.dist", signature=signature("exprSet"),
     function(x, abs=TRUE,diag=FALSE, upper=FALSE) 
         tau.dist(x@exprs, abs, diag, upper))
+
+setMethod("tau.dist", signature=signature("ExpressionSet"),
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE) 
+        tau.dist(exprs(x), abs, diag, upper))

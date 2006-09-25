@@ -2,6 +2,7 @@
 \alias{cor.dist}
 \alias{cor.dist,matrix-method}
 \alias{cor.dist,exprSet-method}
+\alias{cor.dist,ExpressionSet-method}
 \title{ Pearson correlational distance }
 \description{
  Calculate pairwise Pearson correlational distances, i.e. 1-COR or 1-|COR|, for all columns of a matrix and save as a 'dist' object

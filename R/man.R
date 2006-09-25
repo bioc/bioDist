@@ -9,3 +9,6 @@ setMethod("man", signature=signature("matrix"),
 setMethod("man", signature=signature("exprSet"),
     function(x, diag=FALSE, upper=FALSE) man(x@exprs, diag, upper))
 
+setMethod("man", signature=signature("ExpressionSet"),
+    function(x, diag=FALSE, upper=FALSE) man(exprs(x), diag, upper))
+

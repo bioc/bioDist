@@ -2,6 +2,7 @@
 \alias{KLdist.matrix}
 \alias{KLdist.matrix,matrix-method}
 \alias{KLdist.matrix,exprSet-method}
+\alias{KLdist.matrix,ExpressionSet-method}
 \title{ Discrete version of Kullback-Leibler Distance (KLD)}
 \description{
 Calculate KLD by binning

@@ -30,7 +30,11 @@ setMethod("mutualInfo", signature=signature("matrix"),
 setMethod("mutualInfo", signature=signature("exprSet"),
     function(x, nbin=10, diag=FALSE, upper=FALSE) 
         mutualInfo(x@exprs, nbin, diag, upper))
-        
+
+setMethod("mutualInfo", signature=signature("ExpressionSet"),
+    function(x, nbin=10, diag=FALSE, upper=FALSE) 
+        mutualInfo(exprs(x), nbin, diag, upper))
+
 
 setGeneric("MIdist", function(x, ...) standardGeneric("MIdist"))
 
@@ -42,3 +46,7 @@ setMethod("MIdist", signature=signature("matrix"),
 setMethod("MIdist", signature=signature("exprSet"),
     function(x, nbin=10, diag=FALSE, upper=FALSE) 
         MIdist(x@exprs, nbin, diag, upper))
+
+setMethod("MIdist", signature=signature("ExpressionSet"),
+    function(x, nbin=10, diag=FALSE, upper=FALSE) 
+        MIdist(exprs(x), nbin, diag, upper))

@@ -22,3 +22,7 @@ setMethod("spearman.dist", signature=signature("matrix"),
 setMethod("spearman.dist", signature=signature("exprSet"),
     function(x, abs=TRUE,diag=FALSE, upper=FALSE) 
         spearman.dist(x@exprs, abs, diag, upper))
+
+setMethod("spearman.dist", signature=signature("ExpressionSet"),
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE) 
+        spearman.dist(exprs(x), abs, diag, upper))

@@ -22,5 +22,10 @@ setMethod("cor.dist", signature=signature("matrix"),
 setMethod("cor.dist", signature=signature("exprSet"),
     function(x, abs=TRUE,diag=FALSE, upper=FALSE) cor.dist(x@exprs, abs, diag, upper))
 
+setMethod("cor.dist", signature=signature("ExpressionSet"),
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE) {
+        cor.dist(exprs(x), abs, diag, upper)
+    })
+
 
 

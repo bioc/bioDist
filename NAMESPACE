@@ -1,2 +1,15 @@
-import(Biobase)
-export("cor.dist","spearman.dist","tau.dist","euc","man","mutualInfo","KLdist.matrix","KLD.matrix","closest.top", "MIdist")
+import("methods")
+import("Biobase")
+
+export("cor.dist","spearman.dist","tau.dist","euc","man","mutualInfo",
+       "KLdist.matrix","KLD.matrix","closest.top", "MIdist")
+
+exportMethods("KLD.matrix",
+              "KLdist.matrix",
+              "cor.dist",
+              "euc",
+              "man",
+              "mutualInfo",
+              "MIdist",
+              "spearman.dist",
+              "tau.dist")

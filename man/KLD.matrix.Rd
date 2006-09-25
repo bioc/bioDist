@@ -2,6 +2,7 @@
 \alias{KLD.matrix}
 \alias{KLD.matrix,matrix-method}
 \alias{KLD.matrix,exprSet-method}
+\alias{KLD.matrix,ExpressionSet-method}
 \title{Continuous version of Kullback-Leibler Distance (KLD) }
 \description{
 Calculate KLD by estimating by smoothing 

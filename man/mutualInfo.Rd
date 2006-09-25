@@ -2,9 +2,11 @@
 \alias{mutualInfo}
 \alias{mutualInfo,matrix-method}
 \alias{mutualInfo,exprSet-method}
+\alias{mutualInfo,ExpressionSet-method}
 \alias{MIdist}
 \alias{MIdist,matrix-method}
 \alias{MIdist,exprSet-method}
+\alias{MIdist,ExpressionSet-method}
 \title{Mutual Information} 
 \description{
 Calculate mutual information via binning

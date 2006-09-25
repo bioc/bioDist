@@ -2,6 +2,7 @@
 \alias{spearman.dist}
 \alias{spearman.dist,matrix-method}
 \alias{spearman.dist,exprSet-method}
+\alias{spearman.dist,ExpressionSet-method}
 \title{ Spearman correlational distance }
 \description{
  Calculate pairwise Spearman correlational distances, i.e. 1-SPEAR or 

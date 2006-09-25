@@ -2,6 +2,7 @@
 \alias{euc}
 \alias{euc,matrix-method}
 \alias{euc,exprSet-method}
+\alias{euc,ExpressionSet-method}
 \title{ Euclidean distance} 
 \description{
 Calculate pairwise Euclidean distances for all columns of a matrix and save as a 'dist' object
