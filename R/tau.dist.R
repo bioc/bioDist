@@ -20,8 +20,10 @@ setMethod("tau.dist", signature=signature("matrix"),
 } )
 
 setMethod("tau.dist", signature=signature("exprSet"),
-    function(x, abs=TRUE,diag=FALSE, upper=FALSE) 
-        tau.dist(x@exprs, abs, diag, upper))
+    function(x, abs=TRUE,diag=FALSE, upper=FALSE) {
+        .Deprecated(msg=EXPRSET_MSG)
+        tau.dist(x@exprs, abs, diag, upper)
+        })
 
 setMethod("tau.dist", signature=signature("ExpressionSet"),
     function(x, abs=TRUE,diag=FALSE, upper=FALSE) 

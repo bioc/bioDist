@@ -28,8 +28,10 @@ setMethod("mutualInfo", signature=signature("matrix"),
 } )
 
 setMethod("mutualInfo", signature=signature("exprSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE) 
-        mutualInfo(x@exprs, nbin, diag, upper))
+    function(x, nbin=10, diag=FALSE, upper=FALSE) {
+        .Deprecated(msg=EXPRSET_MSG)
+        mutualInfo(x@exprs, nbin, diag, upper)
+        })
 
 setMethod("mutualInfo", signature=signature("ExpressionSet"),
     function(x, nbin=10, diag=FALSE, upper=FALSE) 
@@ -44,8 +46,10 @@ setMethod("MIdist", signature=signature("matrix"),
 )
 
 setMethod("MIdist", signature=signature("exprSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE) 
-        MIdist(x@exprs, nbin, diag, upper))
+    function(x, nbin=10, diag=FALSE, upper=FALSE)  {
+        .Deprecated(msg=EXPRSET_MSG)
+        MIdist(x@exprs, nbin, diag, upper)
+        })
 
 setMethod("MIdist", signature=signature("ExpressionSet"),
     function(x, nbin=10, diag=FALSE, upper=FALSE) 

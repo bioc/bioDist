@@ -45,8 +45,10 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
 } )
 
 setMethod("KLdist.matrix", signature=signature("exprSet"),
-    function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE) 
-        KLdist.matrix(x@exprs, nbin, symmetrize, diag, upper))
+    function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE) {
+        .Deprecated(msg=EXPRSET_MSG)
+        KLdist.matrix(x@exprs, nbin, symmetrize, diag, upper)
+        })
 
 setMethod("KLdist.matrix", signature=signature("ExpressionSet"),
     function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE) 

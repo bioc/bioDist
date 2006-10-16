@@ -40,8 +40,10 @@ setMethod("KLD.matrix", signature=signature("matrix"),
 
 setMethod("KLD.matrix", signature=signature("exprSet"),
     function(x, method=c("locfit", "density"), supp=c(-3,3), 
-        subdivisions=1000, diag=FALSE, upper=FALSE) 
-        KLD.matrix(x@exprs, method, supp, subdivisions, diag, upper))
+             subdivisions=1000, diag=FALSE, upper=FALSE) {
+        .Deprecated(msg=EXPRSET_MSG)
+        KLD.matrix(x@exprs, method, supp, subdivisions, diag, upper)
+        })
 
 setMethod("KLD.matrix", signature=signature("ExpressionSet"),
     function(x, method=c("locfit", "density"), supp=c(-3,3), 
