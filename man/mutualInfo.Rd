@@ -16,7 +16,7 @@ mutualInfo(x, \dots)
 MIdist(x, \dots)
 }
 \arguments{
-  \item{x}{an n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{x}{an n by p matrix or ExpressionSet; if x is an ExpressionSet, the function uses its 'exprs' slot}
   \item{\dots}{arguments passed to \code{mutualInfo} and \code{MIdist}:
   \item{nbin}{number of bins to calculate discrete probabilities, default is 10 }
   \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }

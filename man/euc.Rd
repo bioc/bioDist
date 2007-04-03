@@ -11,7 +11,7 @@ Calculate pairwise Euclidean distances for all columns of a matrix and save as a
 euc(x, \dots)
 }
 \arguments{
-  \item{x}{n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, the function uses its 'exprs' slot}
   \item{\dots}{arguments passed to \code{euc}:
    \item{\code{diag}}{if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
   \item{\code{upper}}{ if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE  } 

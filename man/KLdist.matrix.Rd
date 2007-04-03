@@ -11,7 +11,7 @@ Calculate KLD by binning
 KLdist.matrix(x, \dots)
 }
 \arguments{
-  \item{x}{ n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{x}{ n by p matrix or ExpressionSet; if x is an ExpressionSet, function works against its 'exprs' slot}
   \item{\dots}{arguments passed to \code{KLdist.matrix}:
   \item{nbin}{number of bins to calculate discrete probabilities, default is 10 } 
 \item{symmetrize}{if TRUE, then symmetrize, default is FALSE }

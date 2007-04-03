@@ -12,7 +12,7 @@ Calculate KLD by estimating by smoothing
 KLD.matrix(x, \dots) 
 }
 \arguments{
-\item{x}{ n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+\item{x}{ n by p matrix or ExpressionSet; if x is an ExpressionSet, the function works against its 'exprs' slot}
   \item{\dots}{arguments passed to \code{KLD.matrix}:
   \item{method}{ use \code{locfit} or \code{density} to estimate integrand, default is c("locfit", "density")(i.e. both methods)}
   \item{supp}{upper and lower limits of the integral, default is c(-3, 3) }

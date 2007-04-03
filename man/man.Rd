@@ -12,7 +12,7 @@ save as a \code{dist} object.
 man(x, \dots)
 }
 \arguments{
-  \item{x}{ A matrix or an exprSet; if x is an exprSet, function workes against its 'exprs' slot }
+  \item{x}{ A matrix or an ExpressionSet; if x is an ExpressionSet, the function uses its 'exprs' slot }
   \item{\dots}{arguments passed to \code{man}:
     \item{diag}{If \code{TRUE}, the diagonal of the distance matrix will 
      be displayed, default is FALSE }

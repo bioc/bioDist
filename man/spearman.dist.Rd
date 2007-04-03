@@ -12,7 +12,7 @@
 spearman.dist(x, \dots)
 }
 \arguments{
-  \item{x}{ n by p matrix or exprSet; if x is an exprSet, function workes against its 'exprs' slot}
+  \item{x}{ n by p matrix or ExpressionSet; if x is an ExpressionSet, the function uses its 'exprs' slot}
   \item{\dots}{arguments passed to \code{spearman.dist}:
   \item{abs}{ if \code{TRUE}, then 1-|SPEAR| else 1-SPEAR, default is TRUE }
   \item{diag}{if \code{TRUE}, diagonal of the distance matrix will be displayed, default is FALSE }
