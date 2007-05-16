@@ -5,9 +5,10 @@
 \alias{tau.dist,ExpressionSet-method}
 \title{ Kendall's tau correlational distance }
 \description{
- Calculate pairwise Kendall's tau correlational distances, i.e. 1-TAU or 1-|TAU|, 
+ Calculate pairwise Kendall's tau correlational distances, 
+ i.e. 1-TAU or 1-|TAU|, 
  for all rows of the input matrix and return an instance of the 
- \code{dist} class.}
+ \code{dist} class.
 }
 \usage{
 tau.dist(x)
