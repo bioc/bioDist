@@ -15,7 +15,7 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
    appfun <- function(x,y)
     { 
       
-      breaks.x <- hist(c(x,y) ,breaks=nbin,freq=FALSE,plot=FALSE)$breaks
+      breaks.x <- hist(c(x,y) ,breaks=nbin,plot=FALSE)$breaks
       
       temp1 <- table(cut(y,breaks.x))/nc
       temp1 <- temp1+me
