@@ -1,0 +1,129 @@
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+% \VignetteIndexEntry{bioDist Introduction}
+%\VignetteKeywords{Distances}
+%\VignettePackage{bioDist}
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+
+
+\bibliographystyle{plainnat}
+
+\begin{document}
+
+\section*{Introduction}
+
+The \Rpackage{bioDist} package contains a number of distance functions
+that have found some use in different biological or bioinformatic
+problems. The return values are typically instances of the S3 class
+\Rclass{dist}. 
+
+<<loadLib>>=
+library("bioDist")
+data(sample.ExpressionSet)
+exData = t(exprs(sample.ExpressionSet))
+@
+We will use \Robject{sample.ExpressionSet} as our data.
+These functions are in some ways extensions of the distance functions
+available via the \Rfunction{dist} function in R and hence they
+compute pairwise distances between the rows of the input.  For an
+expression matrix, this will correspond to the genes, or features on
+the array. We are generally more interested in distances between
+samples, which will mean that we typically transpose the input.
+
+MI and KLD focus on very different aspects of distributions. MI is
+large when the joint distribution is quite different from the product
+of the marginals while KLD measures how much the shape of one
+distribution resembles that of the other.
+
+MI can be considered as a multivariate
+measure of association and if the transformation,
+\begin{equation}
+\label{eq:distJOE}
+\delta^* = [ 1 - \exp(-2 MI)]^{1/2}
+\end{equation}
+is used, then $\delta^*$ takes values in the interval $[0,1]$ and can
+be interpreted as a a generalization of the correlation. We will make
+the further transformation to $1 - \delta^*$ so that this measure has
+the same interpretation as other correlation-based distance
+measures.
+
+For mutual information there are two functions, \Rfunction{mutualInfo}
+that computes the distance from independence and \Rfunction{MIdist}
+that computes the transformation in Equation~(\ref{eq:distJOE}).  We
+note that the computations are not terribly fast computing these
+distances on very large data sets is time consuming.
+
+<<R>>=
+s1 = MIdist(exData)
+s2 = as.matrix(s1)
+dim(s2)
+r1 = mutualInfo(exData)
+@
+
+There is one implementation of the KL distances that rely on binning;
+\Rfunction{KLdist.matrix} and one that uses density estimation
+followed by numerical integration, \Rfunction{KLD.matrix}.
+
+<<KLD>>=
+KLD.matrix(exData, method="locfit",supp=range(exData))
+KLdist.matrix(exData)
+@ 
+
+The \Rpackage{bioDist} package also provides implementations of
+distances based on two other measures of correlation, Kendall's tau
+and Pearson's rho.  In the examples below we will measure distance
+between genes, not between samples as was done in the first  few examples.
+
+We use the last 100 genes in the sample data, the number is chosen for
+rapid runnng time, not for any other reason.
+
+<<Tau>>=
+eS=sample.ExpressionSet[401:500,]
+tauD = tau.dist(eS)
+sp = spearman.dist(eS)
+@ 
+
+And a simple helper function, \Rfunction{closest.top}, that given one
+object, will find a specified number of nearest neighbors.
+
+<<closest>>=
+f1 = featureNames(eS)[1]
+closest.top(f1, sp, 3)
+@ 
+
+\section{Session Information}
+
+The version number of R and packages loaded for generating the vignette were:
+
+\begin{verbatim}
+<<echo=FALSE,results=tex>>=
+sessionInfo()
+@
+\end{verbatim}
+
+\end{document}

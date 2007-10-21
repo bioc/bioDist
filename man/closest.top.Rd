@@ -1,29 +1,32 @@
 \name{closest.top}
 \alias{closest.top}
-\title{Find the 'top' closest gene}
+\title{Find the closest genes.}
 \description{
-Find the 'top' closest genes to the target gene based on a distance object 
+Find the closest genes to the supplied target gene, based on the
+supplied distances.
 }
 \usage{
 closest.top(x, dist.mat, top)
 }
 \arguments{
-  \item{x}{ gene name }
-  \item{dist.mat}{ calculated distance object }
-  \item{top}{ number of closest genes desired }
+  \item{x}{ the name of the gene (feature) to use.}
+  \item{dist.mat}{ Either a dist object, or a matrix of distances. }
+  \item{top}{ the number of closest genes desired }
 }
 \details{
+  The feature named \code{x} must be in the supplied distances, then 
+the \code{top} closest other features are returned.
 }
 \value{
- vector of top gene names
+ A vector of names of the \code{top} closest features.
 }
-\references{ }
 \author{ Beiying Ding }
-\note{  }
 
-\seealso{ \code{\link{cor.dist}}, \code{link{spearman.dist}}, \code{\link{tau.dist}},\code{\link{euc}},
+\seealso{ \code{\link{cor.dist}}, \code{\link{spearman.dist}}, \code{\link{tau.dist}},\code{\link{euc}},
 \code{\link{man}},\code{\link{KLdist.matrix}},\code{\link{KLD.matrix}},\code{\link{mutualInfo}} } 
 \examples{
- ##none yet
+data(sample.ExpressionSet)
+sE = sample.ExpressionSet[1:100,]
+d1 = KLdist.matrix(sE)
+closest.top(featureNames(sE)[1], d1, 5)
 }
-\keyword{}
