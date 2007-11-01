@@ -19,6 +19,8 @@ KLD.matrix(x, \dots)
   \item{subdivisions}{ subdivisions for the integration, default is 1000}
   \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
   \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
+  \item{sample}{for ExpressionSet methods, if TRUE then distances are computed
+   between samples, otherwise they are computed between genes.}
 }
 }
 \details{

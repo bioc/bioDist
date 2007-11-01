@@ -21,6 +21,8 @@ MIdist(x, \dots)
   \item{nbin}{number of bins to calculate discrete probabilities, default is 10 }
   \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
   \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
+  \item{sample}{ for ExpressionSet methods, if TRUE, then distances are
+    computed between samples, otherwise, between genes}
 }
 }
 \details{

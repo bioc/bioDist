@@ -28,14 +28,17 @@ setMethod("mutualInfo", signature=signature("matrix"),
 } )
 
 setMethod("mutualInfo", signature=signature("exprSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE) {
+    function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE) {
         .Deprecated(msg=EXPRSET_MSG)
-        mutualInfo(x@exprs, nbin, diag, upper)
+        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
+        mutualInfo(ep, nbin, diag, upper)
         })
 
 setMethod("mutualInfo", signature=signature("ExpressionSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE) 
-        mutualInfo(exprs(x), nbin, diag, upper))
+    function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE) {
+        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
+        mutualInfo(ep, nbin, diag, upper)
+    })
 
 
 setGeneric("MIdist", function(x, ...) standardGeneric("MIdist"))
@@ -46,11 +49,14 @@ setMethod("MIdist", signature=signature("matrix"),
 )
 
 setMethod("MIdist", signature=signature("exprSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE)  {
+    function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE)  {
         .Deprecated(msg=EXPRSET_MSG)
-        MIdist(x@exprs, nbin, diag, upper)
+        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
+        MIdist(ep, nbin, diag, upper)
         })
 
 setMethod("MIdist", signature=signature("ExpressionSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE) 
-        MIdist(exprs(x), nbin, diag, upper))
+    function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE) {
+        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
+        MIdist(ep, nbin, diag, upper)
+        })
