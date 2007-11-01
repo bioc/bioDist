@@ -27,6 +27,6 @@ the \code{top} closest other features are returned.
 \examples{
 data(sample.ExpressionSet)
 sE = sample.ExpressionSet[1:100,]
-d1 = KLdist.matrix(sE)
+d1 = KLdist.matrix(sE, sample=FALSE)
 closest.top(featureNames(sE)[1], d1, 5)
 }
