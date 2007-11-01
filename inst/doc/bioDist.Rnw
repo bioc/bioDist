@@ -104,8 +104,8 @@ rapid runnng time, not for any other reason.
 
 <<Tau>>=
 eS=sample.ExpressionSet[401:500,]
-tauD = tau.dist(eS)
-sp = spearman.dist(eS)
+tauD = tau.dist(eS, sample=FALSE)
+sp = spearman.dist(eS, sample=FALSE)
 @ 
 
 And a simple helper function, \Rfunction{closest.top}, that given one

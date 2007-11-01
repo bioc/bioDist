@@ -22,6 +22,8 @@ tau.dist(x, \dots)
   \item{abs}{ if TRUE, then 1-|TAU| else 1-TAU, default is TRUE }
   \item{diag}{if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
   \item{upper}{ if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
+  \item{sample}{ For the ExpressionSet method, if TRUE (the default) then
+     distances are computed between samples.}
 }
 }
 \details{
@@ -30,7 +32,8 @@ tau.dist(x, \dots)
 }
 \value{
   One minus the row-wise Kendall's tau correlations are returned as an 
- instance of the \code{dist} class.
+ instance of the \code{dist} class. Note that this can be extremely 
+  slow for large data sets.
 }
 \author{Beiying Ding} 
 

@@ -31,4 +31,3 @@ euc(x, \dots)
  x <- matrix(rnorm(200), nrow=5)
  euc(x)
 }
-\keyword{  }

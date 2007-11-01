@@ -20,6 +20,8 @@ KLdist.matrix(x, \dots)
 }
 }
 \details{
+The data are binned, and then the KL distance between the two discrete 
+distributions is computed and used.
 }
 
 \value{

@@ -16,9 +16,12 @@ cor.dist(x, \dots)
   \item{abs}{ if TRUE, then 1-|COR| else 1-COR, default is TRUE }
   \item{diag}{if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
   \item{upper}{ if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE  }
+  \item{sample}{for ExpressionSet methods, if TRUE then distances are computed
+ between samples, otherwise, they are computed between genes.}
 }
 }
 \details{
+The \code{cor} function is used to compute the pairwise distances.
 }
 \value{
   Pairwise Pearson correlational distance object
@@ -30,5 +33,3 @@ cor.dist(x, \dots)
  x <- matrix(rnorm(200), nrow=5)
  cor.dist(x)
 }
-
-\keyword{ }
