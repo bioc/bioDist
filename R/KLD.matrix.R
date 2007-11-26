@@ -52,3 +52,38 @@ setMethod("KLD.matrix", signature=signature("ExpressionSet"),
         if( sample ) ep = t(exprs(x)) else ep = exprs(x)
         KLD.matrix(ep, method, supp, subdivisions, diag, upper)
         })
+
+
+
+## tentative "list" method for unequal sized samples (added by
+## Deepayan Sarkar)
+
+setMethod("KLD.matrix", signature=signature("list"), 
+          function(x, method = c("locfit", "density"),
+                   supp=c(-3,3), 
+                   subdivisions=1000,
+                   diag=FALSE, upper=FALSE)
+      {
+          method <- match.arg(method)
+          dfun <- switch(method,
+                         locfit = locf2func,
+                         density = dens2func)
+          n <- length(x)
+          if (n < 1) return()
+          clist <- vector("list", length=n)
+          for (i in seq_len(n)) clist[[i]] <- dfun(x[[i]])
+          ans <- matrix(NA, n, n)
+          for(i in seq_len(n))
+              for(j in seq_len(n))
+              {
+                  if (is.null(supp))
+                      supp <- range(x[[i]], x[[j]], finite = TRUE)
+                  ans[i, j] <-
+                      if (i == j) 0
+                      else KLD(clist[[i]], clist[[j]],
+                               supp=supp, 
+                               subdivisions=subdivisions)
+              }
+          ans ## t(ans) + ans for symmetric distance
+      })
+
