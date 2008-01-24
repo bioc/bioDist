@@ -17,9 +17,9 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
       
       breaks.x <- hist(c(x,y) ,breaks=nbin,plot=FALSE)$breaks
       
-      temp1 <- table(cut(y,breaks.x))/nc
+      temp1 <- table(cut(y,breaks.x, include.lowest = TRUE))/nc
       temp1 <- temp1+me
-      temp2 <- table(cut(x,breaks.x))/nc
+      temp2 <- table(cut(x,breaks.x, include.lowest = TRUE))/nc
       temp2 <- temp2 + me
       
       dist <- sum(log(temp2/temp1)*temp2) 
@@ -68,8 +68,10 @@ function(x, nbin=10, symmetrize=FALSE, diag=FALSE,
 
 setMethod("KLdist.matrix",
           signature=signature("list"), 
-          function(x, nbin=10, symmetrize=FALSE,
-                   diag=FALSE, upper=FALSE)
+          function(x, 
+                   discretize = TRUE, nbin = 10,
+                   symmetrize = FALSE,
+                   diag = FALSE, upper=FALSE)
       {
           n <- length(x)
           clist <- vector("list", length=n)
@@ -78,34 +80,37 @@ setMethod("KLdist.matrix",
           ##note: we combine x and y before binning, to make sure we span
           ##   the range of the data, and we add machine epsilon to 
           ##   protect against +/- Inf; this could use some work.
-          appfun <- function(x,y)
-          { 
-              
-              breaks.x <- hist(c(x,y) ,breaks=nbin,plot=FALSE)$breaks
-              
-              temp1 <- table(cut(y,breaks.x))/nc
-              temp1 <- temp1+me
-              temp2 <- table(cut(x,breaks.x))/nc
-              temp2 <- temp2 + me
-              
-              dist <- sum(log(temp2/temp1)*temp2) 
-              if(symmetrize)
+          distfun <- function(x, y)
+          {
+              ## not clear what should be done if exactly one of x and y is a factor
+              if (discretize && !is.factor(x))
               {
-                  dist <- (dist + sum(log(temp1/temp2)*temp1))/2
+                  breaks.x <- hist(c(x,y), breaks = nbin, plot = FALSE)$breaks
+                  temp1 <- table(cut(y, breaks.x, include.lowest = TRUE)) / length(y)
+                  ## temp1 <- temp1 + me
+                  temp2 <- table(cut(x, breaks.x, include.lowest = TRUE)) / length(x)
+                  ## temp2 <- temp2 + me
+                  sum( ifelse(temp2 > 0, log(temp2 / (temp1 + me)) * temp2, 0) , na.rm = TRUE)
               }
-              return(dist)   
+              else
+              {
+                  levs <- sort(unique(c(x, y)))
+                  tabx <- table(factor(x, levels = levs)) / length(x)
+                  taby <- table(factor(y, levels = levs)) / length(y)
+                  sum(ifelse(tabx > 0, log(tabx / (taby + me)) * tabx, 0), na.rm = TRUE)
+              }
           }
           ans <- matrix(NA, n, n)
           for(i in seq_len(n))
               for(j in seq_len(n))
               {
-                  ans[i, j] <- appfun(x[[i]], x[[j]])
+                  ans[i, j] <- distfun(x[[i]], x[[j]])
               }
+          if(symmetrize) ans <- t(ans) + ans
+          if (!is.null(names(x)))
+              rownames(ans) <- colnames(ans) <- names(x)
           ans
-      } )
-
-
-
+      })
 
 
 

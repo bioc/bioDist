@@ -84,6 +84,9 @@ setMethod("KLD.matrix", signature=signature("list"),
                                supp=supp, 
                                subdivisions=subdivisions)
               }
-          ans ## t(ans) + ans for symmetric distance
+          ## if (symmetrize) ans <- t(ans) + ans 
+          if (!is.null(names(x)))
+              rownames(ans) <- colnames(ans) <- names(x)
+          ans
       })
 

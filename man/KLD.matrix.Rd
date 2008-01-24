@@ -1,6 +1,7 @@
 \name{KLD.matrix}
 \alias{KLD.matrix}
 \alias{KLD.matrix,matrix-method}
+\alias{KLD.matrix,list-method}
 \alias{KLD.matrix,exprSet-method}
 \alias{KLD.matrix,ExpressionSet-method}
 \title{Continuous version of Kullback-Leibler Distance (KLD) }
@@ -12,7 +13,7 @@ Calculate KLD by estimating by smoothing
 KLD.matrix(x, \dots) 
 }
 \arguments{
-\item{x}{ n by p matrix or ExpressionSet; if x is an ExpressionSet, the function works against its 'exprs' slot}
+  \item{x}{ n by p matrix or ExpressionSet; if x is an ExpressionSet, the function works against its 'exprs' slot}
   \item{\dots}{arguments passed to \code{KLD.matrix}:
   \item{method}{ use \code{locfit} or \code{density} to estimate integrand, default is c("locfit", "density")(i.e. both methods)}
   \item{supp}{upper and lower limits of the integral, default is c(-3, 3) }
@@ -24,7 +25,9 @@ KLD.matrix(x, \dots)
 }
 }
 \details{
- The pairwise distances between the rows of \code{x} are computed.
+  The pairwise distances between the rows of \code{x} are computed.
+
+  The list method is meant for use when samples sizes are unequal.
 }
 \value{
 An object of class \code{dist} with the pairwise, between rows, 

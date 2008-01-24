@@ -1,6 +1,7 @@
 \name{KLdist.matrix}
 \alias{KLdist.matrix}
 \alias{KLdist.matrix,matrix-method}
+\alias{KLdist.matrix,list-method}
 \alias{KLdist.matrix,exprSet-method}
 \alias{KLdist.matrix,ExpressionSet-method}
 \title{ Discrete version of Kullback-Leibler Distance (KLD)}
@@ -12,19 +13,21 @@ KLdist.matrix(x, \dots)
 }
 \arguments{
   \item{x}{ n by p matrix or ExpressionSet; if x is an ExpressionSet,then
-  the values returned by the \code{exprs} function are used.}
+    the values returned by the \code{exprs} function are used.}
   \item{\dots}{arguments passed to \code{KLdist.matrix}:
-  \item{nbin}{number of bins to calculate discrete probabilities, default is 10 } 
-\item{symmetrize}{if TRUE, then symmetrize, default is FALSE }
-  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
-  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
-  \item{sample}{for ExpressionSet methods, if TRUE, then the distances
-   are computed between samples, otherwise between genes.}
-}
+    \item{nbin}{number of bins to calculate discrete probabilities, default is 10 } 
+    \item{symmetrize}{if TRUE, then symmetrize, default is FALSE }
+    \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
+    \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
+    \item{sample}{for ExpressionSet methods, if TRUE, then the distances
+      are computed between samples, otherwise between genes.}
+  }
 }
 \details{
-The data are binned, and then the KL distance between the two discrete 
-distributions is computed and used.
+  The data are binned, and then the KL distance between the two discrete
+  distributions is computed and used.
+
+  The list method is meant for use when samples sizes are unequal.
 }
 
 \value{
