@@ -44,14 +44,6 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
 
 } )
 
-setMethod("KLdist.matrix", signature=signature("exprSet"),
-function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE, 
-         sample=TRUE) {
-    .Deprecated(msg=EXPRSET_MSG)
-    if( sample ) ep = t(exprs(x)) else ep = exprs(x)
-    KLdist.matrix(ep, nbin, symmetrize, diag, upper)
-})
-
 setMethod("KLdist.matrix", signature=signature("ExpressionSet"),
 function(x, nbin=10, symmetrize=FALSE, diag=FALSE, 
          upper=FALSE, sample=TRUE)  {

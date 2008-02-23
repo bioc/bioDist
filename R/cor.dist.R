@@ -19,13 +19,6 @@ setMethod("cor.dist", signature=signature("matrix"),
    rvec
 } )
 
-setMethod("cor.dist", signature=signature("exprSet"),
-    function(x, abs=TRUE,diag=FALSE, upper=FALSE, sample=TRUE) {
-        .Deprecated(msg=EXPRSET_MSG)
-        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
-        cor.dist(ep, abs, diag, upper)
-        })
-
 setMethod("cor.dist", signature=signature("ExpressionSet"),
     function(x, abs=TRUE,diag=FALSE, upper=FALSE) {
         if( sample ) ep = t(exprs(x)) else ep = exprs(x)

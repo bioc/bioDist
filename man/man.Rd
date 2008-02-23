@@ -1,9 +1,8 @@
 \name{man}
 \alias{man}
 \alias{man,matrix-method}
-\alias{man,exprSet-method}
 \alias{man,ExpressionSet-method}
-\title{ Manhattan distance} 
+\title{Manhattan distance} 
 \description{
 Calculate pairwise Manhattan distances for all rows of a matrix and 
 save as a \code{dist} object.
@@ -12,12 +11,12 @@ save as a \code{dist} object.
 man(x, \dots)
 }
 \arguments{
-  \item{x}{ A matrix or an ExpressionSet; if x is an ExpressionSet, the function uses its 'exprs' slot }
+  \item{x}{a matrix or an ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{man}:
-    \item{diag}{If \code{TRUE}, the diagonal of the distance matrix will 
-     be displayed, default is FALSE }
-  \item{upper}{If \code{TRUE}, the upper triangle of the distance matrix will 
-     be displayed, default is FALSE }
+    \item{diag}{if \code{TRUE}, then the diagonal of the distance matrix will 
+     be displayed; default is FALSE.}
+    \item{upper}{if \code{TRUE}, then the upper triangle of the distance matrix will 
+     be displayed; default is FALSE.}
 }
 }
 \details{
@@ -27,11 +26,10 @@ man(x, \dots)
  An instance of the \code{dist} class with the pairwise Manhattan distances
   between the rows of \code{x}.
 }
-\author{ Beiying Ding }
-
-\seealso{ \code{\link{cor.dist}}, \code{\link{spearman.dist}}, 
- \code{\link{tau.dist}},\code{\link{euc}}, \code{\link{KLdist.matrix}},
-  \code{\link{KLD.matrix}},\code{\link{mutualInfo}} }
+\author{Beiying Ding}
+\seealso{\code{\link{cor.dist}}, \code{\link{spearman.dist}}, 
+  \code{\link{tau.dist}},\code{\link{euc}}, \code{\link{KLdist.matrix}},
+  \code{\link{KLD.matrix}},\code{\link{mutualInfo}}}
 \examples{
  x <- matrix(rnorm(200), nrow = 5)
  man(x)

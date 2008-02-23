@@ -1,11 +1,9 @@
 \name{mutualInfo}
 \alias{mutualInfo}
 \alias{mutualInfo,matrix-method}
-\alias{mutualInfo,exprSet-method}
 \alias{mutualInfo,ExpressionSet-method}
 \alias{MIdist}
 \alias{MIdist,matrix-method}
-\alias{MIdist,exprSet-method}
 \alias{MIdist,ExpressionSet-method}
 \title{Mutual Information} 
 \description{
@@ -16,13 +14,13 @@ mutualInfo(x, \dots)
 MIdist(x, \dots)
 }
 \arguments{
-  \item{x}{an n by p matrix or ExpressionSet; if x is an ExpressionSet, the function uses its 'exprs' slot}
+  \item{x}{an n by p matrix or ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{mutualInfo} and \code{MIdist}:
-  \item{nbin}{number of bins to calculate discrete probabilities, default is 10 }
-  \item{diag}{ if TRUE, diagonal of the distance matrix will be displayed, default is FALSE }
-  \item{upper}{if TRUE, upper triangle of the distance matrix will be displayed, default is FALSE }
-  \item{sample}{ for ExpressionSet methods, if TRUE, then distances are
-    computed between samples, otherwise, between genes}
+  \item{nbin}{number of bins to calculate discrete probabilities; default is 10.}
+  \item{diag}{if TRUE, then the diagonal of the distance matrix will be displayed; default is FALSE.}
+  \item{upper}{if TRUE, then the upper triangle of the distance matrix will be displayed; default is FALSE.}
+  \item{sample}{for ExpressionSet methods, if TRUE, then distances are computed between samples,
+  otherwise, between genes.}
 }
 }
 \details{
@@ -30,7 +28,7 @@ MIdist(x, \dots)
  \code{nbin} groups and then the mutual information is computed, treating 
  the data as if they were discrete.
 
- For \code{MIdist} we use the transformation proposed by Joe (1989),
+For \code{MIdist} we use the transformation proposed by Joe (1989),
 \eqn{\delta^* = (1 - \exp(-2 \delta))^{1/2}}{delta* = (1 - exp(-2 delta))^.5}
 where \eqn{\delta}{delta} is the mutual information. The \code{MIdist} is 
 then \eqn{1 = \delta^*}{1-delta*}. Joe argues that this measure is then 
@@ -41,12 +39,11 @@ similar to Kendall's tau, \code{\link{tau.dist}}.
 }
 \references{H. Joe, Relative Entropy Measures of Multivariate Dependence,
 JASA, 1989, 157-164.}
-\author{ Robert Gentleman }
-
-\seealso{ \code{\link{dist}}, \code{\link{KLdist.matrix}},
-  \code{\link{cor.dist}}, \code{\link{KLD.matrix}} }
+\author{Robert Gentleman}
+\seealso{\code{\link{dist}}, \code{\link{KLdist.matrix}},
+  \code{\link{cor.dist}}, \code{\link{KLD.matrix}}}
 \examples{
- x <- matrix(rnorm(100),nrow=5)
- mutualInfo(x, nbin=3)
+ x <- matrix(rnorm(100), nrow = 5)
+ mutualInfo(x, nbin = 3)
 }
 \keyword{manip}

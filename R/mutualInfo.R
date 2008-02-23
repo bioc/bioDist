@@ -27,13 +27,6 @@ setMethod("mutualInfo", signature=signature("matrix"),
    rvec
 } )
 
-setMethod("mutualInfo", signature=signature("exprSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE) {
-        .Deprecated(msg=EXPRSET_MSG)
-        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
-        mutualInfo(ep, nbin, diag, upper)
-        })
-
 setMethod("mutualInfo", signature=signature("ExpressionSet"),
     function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE) {
         if( sample ) ep = t(exprs(x)) else ep = exprs(x)
@@ -47,13 +40,6 @@ setMethod("MIdist", signature=signature("matrix"),
     function(x, nbin=10, diag=FALSE, upper=FALSE) 
   1 - (1 - exp(-2*mutualInfo(x, nbin, diag, upper)))^.5
 )
-
-setMethod("MIdist", signature=signature("exprSet"),
-    function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE)  {
-        .Deprecated(msg=EXPRSET_MSG)
-        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
-        MIdist(ep, nbin, diag, upper)
-        })
 
 setMethod("MIdist", signature=signature("ExpressionSet"),
     function(x, nbin=10, diag=FALSE, upper=FALSE, sample=TRUE) {

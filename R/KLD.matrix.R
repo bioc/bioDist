@@ -38,21 +38,12 @@ setMethod("KLD.matrix", signature=signature("matrix"),
 
 })
 
-setMethod("KLD.matrix", signature=signature("exprSet"),
-    function(x, method=c("locfit", "density"), supp=c(-3,3), 
-             subdivisions=1000, diag=FALSE, upper=FALSE, sample=TRUE) {
-        .Deprecated(msg=EXPRSET_MSG)
-        if( sample ) ep = t(exprs(x)) else ep = exprs(x)
-        KLD.matrix(ep, method, supp, subdivisions, diag, upper)
-        })
-
 setMethod("KLD.matrix", signature=signature("ExpressionSet"),
     function(x, method=c("locfit", "density"), supp=c(-3,3), 
         subdivisions=1000, diag=FALSE, upper=FALSE, sample=TRUE) {
         if( sample ) ep = t(exprs(x)) else ep = exprs(x)
         KLD.matrix(ep, method, supp, subdivisions, diag, upper)
         })
-
 
 
 ## tentative "list" method for unequal sized samples (added by
