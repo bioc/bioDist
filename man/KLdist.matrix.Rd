@@ -6,6 +6,13 @@
 \title{Discrete version of Kullback-Leibler Distance (KLD)}
 \description{
 Calculate the KLD by binning continuous data.
+
+KL distance is calculated using the formula
+     
+\deqn{KLD(f_1(x),f_2(x)) = \frac{1}{N}\sum_{i=1}^N{ 
+       \Delta_i*f_1(x_i)*\log\frac{f_1(x_i)}{f_2(x_i)}}}
+}
+                            
 }
 \usage{
 KLdist.matrix(x, \dots)
