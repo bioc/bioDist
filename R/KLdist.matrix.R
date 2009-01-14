@@ -9,7 +9,7 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
    clist <- vector("list", length=nr)
    me <- .Machine$double.eps
     
-   if(ncol(m)<nbin)
+   if(ncol(x)<nbin)
     stop("'Number of bins is less than number of columns in matrix")
        
    ##note: we combine x and y before binning, to make sure we span
@@ -46,6 +46,7 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
    rvec
 
 } )
+
 
 setMethod("KLdist.matrix", signature=signature("ExpressionSet"),
 function(x, nbin=10, symmetrize=FALSE, diag=FALSE, 
