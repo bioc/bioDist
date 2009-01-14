@@ -13,7 +13,7 @@ KL distance is calculated using the formula
        \Delta_i*f_1(x_i)*\log\frac{f_1(x_i)}{f_2(x_i)}}}
 }
                             
-}
+
 \usage{
 KLdist.matrix(x, \dots)
 }

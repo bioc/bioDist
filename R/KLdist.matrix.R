@@ -8,10 +8,7 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
    nr <- nrow(x)
    clist <- vector("list", length=nr)
    me <- .Machine$double.eps
-    
-   if(ncol(x)<nbin)
-    stop("'Number of bins is less than number of columns in matrix")
-       
+           
    ##note: we combine x and y before binning, to make sure we span
    ##   the range of the data, and we add machine epsilon to 
    ##   protect against +/- Inf; this could use some work.
@@ -24,10 +21,10 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
       temp2 <- table(cut(x,breaks.x, include.lowest = TRUE))/nc
       temp2 <- temp2 + me
       
-      dist <- sum(log(temp2/temp1)*temp2*binWidth)/nbin 
+      dist <- sum(log(temp2/temp1)*temp2*binWidth)/nbin
       if(symmetrize)
        {
-        dist <- (dist + sum(log(temp1/temp2)*temp1*binWidth)/nbin)/2
+        dist <- (dist + sum(log(temp1/temp2)*temp1*binWidth)/nbin)/2       #nbin
        }
       return(dist)   
     }
