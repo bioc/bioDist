@@ -13,11 +13,16 @@ spearman.dist(x, \dots)
 \arguments{
   \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{spearman.dist}:
-  \item{abs}{if \code{TRUE}, then 1-|SPEAR| else 1-SPEAR; default is TRUE.}
-  \item{diag}{if \code{TRUE}, then the diagonal of the distance matrix will be displayed; default is FALSE.}
-  \item{upper}{if \code{TRUE}, then the upper triangle of the distance matrix will be displayed; default is FALSE.}
-  \item{sample}{for the ExpressionSet method: if TRUE (the default), then distances are computed between samples.}
- }
+    \itemize{
+      \item{abs}{if \code{TRUE}, then 1-|SPEAR| else 1-SPEAR; default is TRUE.}
+      \item{diag}{if \code{TRUE}, then the diagonal of the distance matrix
+      will be displayed; default is FALSE.} 
+      \item{upper}{if \code{TRUE}, then the upper triangle of the distance
+      matrix will be displayed; default is FALSE.} 
+      \item{sample}{for the ExpressionSet method: if TRUE (the default), then
+      distances are computed between samples.}
+    }
+  }
 }
 \details{
 We call \code{cor} with the appropriate arguments to compute the row-wise correlations. 

@@ -18,11 +18,16 @@ tau.dist(x, \dots)
 \arguments{
   \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{tau.dist}:
-  \item{abs}{if TRUE, then 1-|TAU| else 1-TAU; default is TRUE.}
-  \item{diag}{if TRUE, then the diagonal of the distance matrix will be displayed; default is FALSE.}
-  \item{upper}{if TRUE, then the upper triangle of the distance matrix will be displayed; default is FALSE.}
-  \item{sample}{for the ExpressionSet method: if TRUE (the default), then distances are computed between samples.}
-}
+    \itemize{
+      \item{abs}{if TRUE, then 1-|TAU| else 1-TAU; default is TRUE.}
+      \item{diag}{if TRUE, then the diagonal of the distance matrix will be
+      displayed; default is FALSE.} 
+      \item{upper}{if TRUE, then the upper triangle of the distance matrix
+      will be displayed; default is FALSE.} 
+      \item{sample}{for the ExpressionSet method: if TRUE (the default), then
+      distances are computed between samples.} 
+    }
+  }
 }
 \details{
  Row-wise correlations are computed by calling the \code{cor} function 

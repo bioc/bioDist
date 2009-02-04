@@ -13,11 +13,13 @@ man(x, \dots)
 \arguments{
   \item{x}{a matrix or an ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{man}:
-    \item{diag}{if \code{TRUE}, then the diagonal of the distance matrix will 
-     be displayed; default is FALSE.}
-    \item{upper}{if \code{TRUE}, then the upper triangle of the distance matrix will 
-     be displayed; default is FALSE.}
-}
+    \itemize{
+      \item{diag}{if \code{TRUE}, then the diagonal of the distance matrix will 
+       be displayed; default is FALSE.}
+      \item{upper}{if \code{TRUE}, then the upper triangle of the distance
+      matrix will be displayed; default is FALSE.}
+    }
+  }
 }
 \details{
  This is just an interface to \code{dist} with the right parameters set.

@@ -21,12 +21,18 @@ KLdist.matrix(x, \dots)
   \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet,then
     the values returned by the \code{exprs} function are used.}
   \item{\dots}{arguments passed to \code{KLdist.matrix}:
-    \item{nbin}{number of bins to calculate discrete probabilities; default is 10.}
-    \item{symmetrize}{if TRUE, then symmetrize; default is FALSE.}
-    \item{diag}{if TRUE, then the diagonal of the distance matrix will be displayed; default is FALSE.}
-    \item{upper}{if TRUE, then the upper triangle of the distance matrix will be displayed; default is FALSE.}
-    \item{sample}{for ExpressionSet methods: if TRUE, then the distances are computed between samples,
+    \itemize{
+      \item{nbin}{number of bins to calculate discrete probabilities; default
+      is 10.} 
+      \item{symmetrize}{if TRUE, then symmetrize; default is FALSE.}
+      \item{diag}{if TRUE, then the diagonal of the distance matrix will be
+      displayed; default is FALSE.} 
+      \item{upper}{if TRUE, then the upper triangle of the distance matrix
+      will be displayed; default is FALSE.} 
+      \item{sample}{for ExpressionSet methods: if TRUE, then the distances are
+      computed between samples, 
     otherwise, between genes.}
+    }
   }
 }
 \details{

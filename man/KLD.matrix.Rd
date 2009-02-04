@@ -14,14 +14,19 @@ KLD.matrix(x, \dots)
 \arguments{
   \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, then the function works against its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{KLD.matrix}:
-  \item{method}{use \code{locfit} or \code{density} to estimate integrand; default is c("locfit", "density")(i.e. both methods).}
-  \item{supp}{upper and lower limits of the integral; default is c(-3, 3).}
-  \item{subdivisions}{subdivisions for the integration; default is 1000.}
-  \item{diag}{if TRUE, then the diagonal of the distance matrix will be displayed; default is FALSE.}
-  \item{upper}{if TRUE, then the upper triangle of the distance matrix will be displayed; default is FALSE.}
-  \item{sample}{for ExpressionSet methods: if TRUE, then distances are computed between samples,
-  otherwise, they are computed between genes.}
-}
+    \itemize{
+      \item{method}{use \code{locfit} or \code{density} to estimate integrand;
+      default is c("locfit", "density")(i.e. both methods).} 
+      \item{supp}{upper and lower limits of the integral; default is c(-3, 3).}
+      \item{subdivisions}{subdivisions for the integration; default is 1000.}
+      \item{diag}{if TRUE, then the diagonal of the distance matrix will be
+      displayed; default is FALSE.} 
+      \item{upper}{if TRUE, then the upper triangle of the distance matrix
+      will be displayed; default is FALSE.} 
+      \item{sample}{for ExpressionSet methods: if TRUE, then distances are
+      computed between samples, otherwise, they are computed between genes.}
+    }
+  }
 }
 \details{
   The pairwise distances between the rows of \code{x} are computed.
