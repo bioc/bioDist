@@ -1,5 +1,6 @@
 setGeneric("KLdist.matrix", function(x, ...) standardGeneric("KLdist.matrix"))
 
+
 setMethod("KLdist.matrix", signature=signature("matrix"), 
           function(x, nbin=10, symmetrize=FALSE, diag=FALSE, upper=FALSE)
 {
@@ -12,20 +13,37 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
    ##note: we combine x and y before binning, to make sure we span
    ##   the range of the data, and we add machine epsilon to 
    ##   protect against +/- Inf; this could use some work.
+
+   interpfunc <- function(x,y,...) {
+	f <- function(w) approx(x,y, w, yleft=0, yright=0)$y
+	class(f) <- "dfun"
+	f
+   }
+   #### to be optimized  :ngopalak
    appfun <- function(x,y)
     { 
-      breaks.x <- hist(c(x,y) ,breaks=nbin,plot=FALSE)$breaks
-      binWidth<-diff(breaks.x,1)
-      temp1 <- table(cut(y,breaks.x, include.lowest = TRUE))/nc
-      temp1 <- temp1+me
-      temp2 <- table(cut(x,breaks.x, include.lowest = TRUE))/nc
-      temp2 <- temp2 + me
-      
-      dist <- sum(log(temp2/temp1)*temp2*binWidth)/nbin
-      if(symmetrize)
-       {
-        dist <- (dist + sum(log(temp1/temp2)*temp1*binWidth)/nbin)/2       #nbin
-       }
+	h1 <- dpih(x)
+ 	bins <- seq(min(x)-0.1, max(x)+0.1+h1, by=h1)
+        temp1Hist <- hist(x,breaks=bins,plot=FALSE)
+        temp1 <- temp1Hist$count/(nc*h1)
+
+	h2 <- dpih(y)
+ 	bins <- seq(min(y)-0.1, max(y)+0.1+h2, by=h2)     
+ 	temp2Hist <- hist(y,breaks=bins,plot=FALSE)
+ 	temp2 <- temp2Hist$count/(nc*h2)
+ 	temp2 <- temp2
+        
+        f <- interpfunc(temp1Hist$mids,temp1)
+        g<- interpfunc(temp2Hist$mids,temp2)
+        step <- min(c(h1,h2))/2
+        supp <- range(c(x,y))
+        p<- seq(from= supp[1], to =supp[2], by= step)        
+        dist<-sum(log((f(p)+me)/(g(p)+me))*f(p))*step
+        if(symmetrize)
+        {
+          dist <- (dist +  sum(log((g(p)+me)/(f(p)+me))*g(p))*step)/2
+
+        }
       return(dist)   
     }
     
@@ -63,7 +81,11 @@ setMethod("KLdist.matrix",
           n <- length(x)
           clist <- vector("list", length=n)
           me <- .Machine$double.eps
-          
+          interpfunc <- function(x,y,...) {
+            f <- function(w) approx(x,y, w, yleft=0, yright=0)$y
+            class(f) <- "dfun"
+            f
+          }
           ##note: we combine x and y before binning, to make sure we span
           ##   the range of the data, and we add machine epsilon to 
           ##   protect against +/- Inf; this could use some work.
@@ -71,17 +93,35 @@ setMethod("KLdist.matrix",
           {   
               ## not clear what should be done if exactly one of x and y is a factor
               if (discretize && !is.factor(x))
-              {   breaks.x <- hist(c(x,y), breaks = nbin, plot = FALSE)$breaks
-                  binWidth<-diff(breaks.x,1)
-                  temp1 <- table(cut(y, breaks.x, include.lowest = TRUE)) / length(y)
-                  ## temp1 <- temp1 + me
-                  temp2 <- table(cut(x, breaks.x, include.lowest = TRUE)) / length(x)
-                  ## temp2 <- temp2 + me
-                  dist<-sum( ifelse(temp2 > 0, log(temp2 / (temp1 + me)) * temp2*binWidth, 0) , na.rm = TRUE)/nbin
+              {  
+                  ## to be optimized , use table instead of hist
+	          h1 <- dpih(x)
+		  nc1<- length(x)
+ 		  bins <- seq(min(x)-0.1, max(x)+0.1+h1, by=h1)
+        	  temp1Hist <- hist(x,breaks=bins,plot=FALSE)
+                  temp1 <- temp1Hist$count/(nc1*h1)
+		 
+                  h2 <- dpih(y)
+		  nc2 <-length(y)
+ 	          bins <- seq(min(y)-0.1, max(y)+0.1+h2, by=h2)     
+ 	          temp2Hist <- hist(y,breaks=bins,plot=FALSE)
+ 	          temp2 <- temp2Hist$count/(nc2*h2)
+ 	          temp2 <- temp2
+                  
+         	  f <- interpfunc(temp1Hist$mids,temp1)
+                  g<- interpfunc(temp2Hist$mids,temp2)
+                  step <- min(c(h1,h2))/2
+                  supp <- range(c(x,y))
+                  p<- seq(from= supp[1], to =supp[2], by= step)        
+                  dist<-sum(log((f(p)+me)/(g(p)+me))*f(p))*step
                   if(symmetrize)
                   {
-		    dist <- (dist + sum( ifelse(temp1 > 0, log(temp1 / (temp2 + me)) * temp1*binWidth, 0) , na.rm = TRUE)/nbin)/2
-		  }
+                    dist <- (dist +  sum(log((g(p)+me)/(f(p)+me))*g(p))*step)/2
+          
+                  }
+      		  return(dist)   
+
+
 	      }
               else
               {
@@ -100,7 +140,10 @@ setMethod("KLdist.matrix",
           ct <- 1
           for(i in 1:(n-1))
 	      for(j in (i+1):n) {
-                  ans[ct] <- distfun(x[[i]], x[[j]])
+		  if(!is.na(x[[i]]) && !is.na(x[[j]]))
+                  	ans[ct] <- distfun(x[[i]], x[[j]])
+		  else
+		 	ans[ct]=NA
 		  ct <- ct+1
 	      }
           attributes(ans) <- list(Size = n, Labels = names(x),

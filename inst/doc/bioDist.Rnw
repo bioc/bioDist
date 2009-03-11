@@ -98,7 +98,7 @@ followed by numerical integration, \Rfunction{KLD.matrix}.
 
 <<KLD>>=
 kl1 = KLdist.matrix(exData)
-kl2 = KLD.matrix(exData, method="locfit", supp=range(exData))
+kl2 = KLD.matrix(exData, method="density", supp=range(exData))
 @ 
 
 The \Rpackage{bioDist} package also provides implementations of
