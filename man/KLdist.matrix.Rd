@@ -37,12 +37,15 @@ KLdist.matrix(x, \dots)
 }
 \details{
   The data are binned, and then the KL distance between the two discrete
-  distributions is computed and used.
+  distributions is computed and used. The distance is computed between
+  rows of the input matrix (except if the input is an ExpressionSet
+  and \code{sample} is \cote{TRUE}.
 
+  The presumption is that all samples have the same number of observations.
   The list method is meant for use when samples sizes are unequal.
 }
 \value{
-Pairwsie KLD object
+An object of class \code{dist} is returned.
 }
 \author{Beiying Ding}
 \seealso{\code{\link{cor.dist}}, \code{\link{spearman.dist}}, 
