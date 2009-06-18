@@ -1,16 +1,16 @@
-\name{KLdist.matrix}
+\name{KLdist.matriX}
 \alias{KLdist.matrix}
 \alias{KLdist.matrix,matrix-method}
 \alias{KLdist.matrix,list-method}
-\alias{KLdist.matrix,ExpressionSet-method}
+\alias{KLdist.matrix,eSet-method}
 \title{Discrete version of Kullback-Leibler Distance (KLD)}
 \description{
 Calculate the KLD by binning continuous data.
 
 KL distance is calculated using the formula
      
-\deqn{KLD(f_1(x),f_2(x)) = \frac{1}{N}\sum_{i=1}^N{ 
-       \Delta_i*f_1(x_i)*\log\frac{f_1(x_i)}{f_2(x_i)}}}
+\deqn{KLD(f_1(x),f_2(x)) = \sum_{i=1}^N{ 
+       f_1(x_i)*\log\frac{f_1(x_i)}{f_2(x_i)}}}
 }
                             
 
@@ -18,28 +18,30 @@ KL distance is calculated using the formula
 KLdist.matrix(x, \dots)
 }
 \arguments{
-  \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet,then
-    the values returned by the \code{exprs} function are used.}
+  \item{x}{n by p matrix or a list or an object of a class that extends eSet.
+ If x is an object of a class derived from eSet (ExpressionSet,SnpSet etc),
+then the values returned by the \code{exprs} function are used.}
   \item{\dots}{arguments passed to \code{KLdist.matrix}:
     \itemize{
-      \item{nbin}{number of bins to calculate discrete probabilities; default
-      is 10.} 
+      \item{gridsize}{number of grid points used to select the optimal bin 
+	  width of the histogram used to estimate density. If no value is 
+	  supplied, the grid size is calculated internally; default is NULL
+      .} 
       \item{symmetrize}{if TRUE, then symmetrize; default is FALSE.}
       \item{diag}{if TRUE, then the diagonal of the distance matrix will be
       displayed; default is FALSE.} 
       \item{upper}{if TRUE, then the upper triangle of the distance matrix
       will be displayed; default is FALSE.} 
-      \item{sample}{for ExpressionSet methods: if TRUE, then the distances are
-      computed between samples, 
-    otherwise, between genes.}
+      \item{sample}{for eSet methods: if TRUE, then the distances are
+      computed between samples, otherwise, between features; ;default is TRUE.}
     }
   }
 }
 \details{
   The data are binned, and then the KL distance between the two discrete
   distributions is computed and used. The distance is computed between
-  rows of the input matrix (except if the input is an ExpressionSet
-  and \code{sample} is \cote{TRUE}.
+  rows of the input matrix (except if the input is an object of a class
+  that extends eSet  and \code{sample} is \code{TRUE}.
 
   The presumption is that all samples have the same number of observations.
   The list method is meant for use when samples sizes are unequal.
@@ -53,6 +55,6 @@ An object of class \code{dist} is returned.
   \code{\link{man}},\code{\link{KLD.matrix}},\code{\link{mutualInfo}}}
 \examples{
  x <- matrix(rnorm(100), nrow = 5)
- KLdist.matrix(x, symmetrize = TRUE, nbin = 3) 
+ KLdist.matrix(x, symmetrize = TRUE) 
 }
 \keyword{manip}

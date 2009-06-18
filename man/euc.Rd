@@ -1,30 +1,41 @@
 \name{euc}
 \alias{euc}
 \alias{euc,matrix-method}
-\alias{euc,ExpressionSet-method}
+\alias{euc,eSet-method}
 \title{Euclidean distance} 
 \description{
-Calculate pairwise Euclidean distances for all columns of a matrix and save as a 'dist' object
+Calculate pairwise Euclidean distances and saves the result  as a 'dist' object
 }
 \usage{
 euc(x, \dots)
 }
 \arguments{
-  \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, then the
-  function uses its 'exprs' slot.} 
+  \item{x}{n by p matrix or an object of a class that extends eSet; if x is a
+  matrix, pairwise distances are calculated between the rows of a matrix. 
+  If x is an object of a class that extends eSet, the method makes use of the
+  'exprs' method and  pairwise distances are calculated
+  between samples(columns) if \code{sample} is \code{TRUE}}   
   \item{\dots}{arguments passed to \code{euc}:
     \itemize{
        \item{\code{diag}}{if TRUE, then the diagonal of the distance matrix will
        be displayed; default is FALSE.} 
        \item{\code{upper}}{if TRUE, then the upper triangle of the distance
        matrix will be displayed; default is FALSE.}
-    }
-  }
+       \item{\code{sample}}{For objects of classes that extends eSet, pairwise
+       distances are calculated between samples(columns) if \code{sample} is 
+	   \code{TRUE} ; default value is TRUE}
+       }
+
+   }
 }
 \details{
+The method calculates pairwise euclidean distances, assuming that all samples 
+have the same number of observations 
 }
 \value{
- Pairwise Euclidean distance object
+ An object of class \code{dist} with the pairwise Euclidean distance between rows
+ except in case of objects of class that extend eSet when \code{sample} is 
+\code{TRUE}
 }
 \author{Beiying Ding}
 \seealso{\code{\link{spearman.dist}}, \code{\link{tau.dist}},

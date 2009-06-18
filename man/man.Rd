@@ -1,22 +1,21 @@
 \name{man}
 \alias{man}
 \alias{man,matrix-method}
-\alias{man,ExpressionSet-method}
+\alias{man,eSet-method}
 \title{Manhattan distance} 
 \description{
-Calculate pairwise Manhattan distances for all rows of a matrix and 
-save as a \code{dist} object.
+Calculate pairwise Manhattan distances and saves as a \code{dist} object.
 }
 \usage{
 man(x, \dots)
 }
 \arguments{
-  \item{x}{a matrix or an ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
-  \item{\dots}{arguments passed to \code{man}:
+  	\item{x}{n by p matrix or an object of class that extends eSet. If x is an object of class that extends eSet, (eg  ExpressionSet) then the function uses its 'exprs' slot.}
+  	\item{\dots}{arguments passed to \code{man}:
     \itemize{
-      \item{diag}{if \code{TRUE}, then the diagonal of the distance matrix will 
+    \item{diag}{if \code{TRUE}, then the diagonal of the distance matrix will 
        be displayed; default is FALSE.}
-      \item{upper}{if \code{TRUE}, then the upper triangle of the distance
+    \item{upper}{if \code{TRUE}, then the upper triangle of the distance
       matrix will be displayed; default is FALSE.}
     }
   }
@@ -26,7 +25,8 @@ man(x, \dots)
 }
 \value{
  An instance of the \code{dist} class with the pairwise Manhattan distances
-  between the rows of \code{x}.
+  between the rows of \code{x} in case of a matrix or between the features 
+(rows) in case of a class that extends eSet.
 }
 \author{Beiying Ding}
 \seealso{\code{\link{cor.dist}}, \code{\link{spearman.dist}}, 

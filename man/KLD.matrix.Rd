@@ -2,7 +2,7 @@
 \alias{KLD.matrix}
 \alias{KLD.matrix,matrix-method}
 \alias{KLD.matrix,list-method}
-\alias{KLD.matrix,ExpressionSet-method}
+\alias{KLD.matrix,eSet-method}
 \title{Continuous version of Kullback-Leibler Distance (KLD)}
 \description{
 Calculate KLD by estimating by smoothing 
@@ -12,12 +12,15 @@ Calculate KLD by estimating by smoothing
 KLD.matrix(x, \dots) 
 }
 \arguments{
-  \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, then the function works against its 'exprs' slot.}
+  \item{x}{n by p matrix or list or an object of a class that extends eSet; if x is an an object of 
+  a class that extends eSet (eg ExpressionSet), then the function works against its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{KLD.matrix}:
     \itemize{
       \item{method}{use \code{locfit} or \code{density} to estimate integrand;
       default is c("locfit", "density")(i.e. both methods).} 
-      \item{supp}{upper and lower limits of the integral; default is c(-3, 3).}
+      \item{supp}{upper and lower limits of the integral; default is NULL in
+      which case the limits of the integral are calculated from the range of 
+      the data.}
       \item{subdivisions}{subdivisions for the integration; default is 1000.}
       \item{diag}{if TRUE, then the diagonal of the distance matrix will be
       displayed; default is FALSE.} 
@@ -29,9 +32,13 @@ KLD.matrix(x, \dots)
   }
 }
 \details{
-  The pairwise distances between the rows of \code{x} are computed.
+  The distance is computed between rows of the input matrix 
+  (except if the input is an object of a class  that extends eSet 
+   and \code{sample} is \code{TRUE}.
 
+  The presumption is that all samples have the same number of observations.
   The list method is meant for use when samples sizes are unequal.
+
 }
 \value{
 An object of class \code{dist} with the pairwise, between rows, 
