@@ -6,5 +6,8 @@ setMethod("euc", signature=signature("matrix"),
    dist(x, method="euclidean", diag = diag, upper = upper)
 } )
 
-setMethod("euc", signature=signature("ExpressionSet"),
-    function(x, diag = FALSE, upper = FALSE) euc(exprs(x), diag, upper))
+setMethod("euc", signature=signature("eSet"),
+    function(x, diag = FALSE, upper = FALSE,sample =TRUE) {
+    if(sample) ep <- t(exprs(x)) else ep <- exprs(X)
+    euc(ep, diag, upper)
+})

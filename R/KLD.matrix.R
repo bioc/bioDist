@@ -40,8 +40,8 @@ setMethod("KLD.matrix", signature=signature("matrix"),
 
 })
 
-setMethod("KLD.matrix", signature=signature("ExpressionSet"),
-    function(x, method=c("locfit", "density"), supp=c(-3,3), 
+setMethod("KLD.matrix", signature=signature("eSet"),
+    function(x, method=c("locfit", "density"), supp=NULL, 
         subdivisions=1000, diag=FALSE, upper=FALSE, sample=TRUE) {
         if( sample ) ep = t(exprs(x)) else ep = exprs(x)
         KLD.matrix(ep, method, supp, subdivisions, diag, upper)

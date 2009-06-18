@@ -19,7 +19,7 @@ setMethod("cor.dist", signature=signature("matrix"),
    rvec
 } )
 
-setMethod("cor.dist", signature=signature("ExpressionSet"),
+setMethod("cor.dist", signature=signature("eSet"),
     function(x, abs=TRUE,diag=FALSE, upper=FALSE) {
         if( sample ) ep = t(exprs(x)) else ep = exprs(x)
         cor.dist(ep, abs, diag, upper)

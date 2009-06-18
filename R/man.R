@@ -6,6 +6,7 @@ setMethod("man", signature=signature("matrix"),
   dist(x, method="manhattan", diag=diag, upper=upper)
 } )
 
-setMethod("man", signature=signature("ExpressionSet"),
-    function(x, diag=FALSE, upper=FALSE) man(exprs(x), diag, upper))
+setMethod("man", signature=signature("eSet"),
+    function(x, diag=FALSE, upper=FALSE) man(exprs(x), diag, upper)
+)
 
