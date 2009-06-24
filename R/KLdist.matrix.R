@@ -70,7 +70,7 @@ setMethod("KLdist.matrix", signature=signature("eSet"),
 function(x,gridsize=NULL, symmetrize=FALSE, diag=FALSE, 
          upper=FALSE, sample=TRUE)  {
     if( sample ) ep <- t(exprs(x)) else ep <- exprs(x)
-    KLdist.matrix(ep, symmetrize, diag, upper)
+    KLdist.matrix(ep, gridsize=gridsize, symmetrize=symmetrize, diag, upper)
 })
 
 
