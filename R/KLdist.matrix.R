@@ -16,45 +16,45 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
 	f
    }
 
-   appfun <- function(x,y)
-    {   
-       h1 <- dpih(x,gridsize=if(is.null(gridsize))
-                                 max(401,length(x)/5)
-                             else
-                                 gridsize)
-       h2 <- dpih(y,gridsize=if(is.null(gridsize)) 
-			         max(401,length(y)/5)
-                             else
-                                 gridsize)
-
- 
-       bins1 <- seq(min(x)-0.1, max(x)+0.1+h1, by=h1)
-       temp1 <- KernSmooth:::linbin(x,bins1,truncate=T)/(nc*h1)
-       f <- interpfunc(bins1,temp1)
+   datRange <- matrix(ncol=2,nrow=nr)
+   binWidth <- vector(length=nr)
+   bins <- list()
+   binCounts <-list()
    
-       bins2 <- seq(min(y)-0.1, max(y)+0.1+h2, by=h2)     
-       temp2 <- KernSmooth:::linbin(y,bins2,truncate=T)/(nc*h2)
-       g<- interpfunc( bins2 ,temp2)
+   for( i in 1:nr){
+        if(nc >10000)  dat <- sample(x[i,],nc*0.1)
+        else           dat <- x[i,]
+        datRange[i,] <- range(dat)
+		binWidth[i] <- dpih(dat,gridsize=if(is.null(gridsize)) 
+											max(401,length(dat)/10) 
+										else girdsize)
+        bins[[i]] <- seq(datRange[i,1]-0.1, datRange[i,2]+0.1+binWidth[i], 
+						 by=binWidth[i])
+        binCounts[[i]] <- KernSmooth:::linbin(x[i,],bins[[i]],truncate=T)/
+                                    (nc*binWidth[i])
+	}   
 
-       step <- min(c(h1,h2)) 
-       comb <- c(x,y)
-       supp <- c(min(comb),max(comb))
-       p<- seq(from= supp[1], to =supp[2], by= step)        
+   appfun <- function(x,bins,binCounts,binWidth,i,j)
+    {   
+       step <- min(binWidth[[i]],binWidth[[j]])
+       combRange <- datRange[c(i,j),]
+       supp <- c(min(combRange[,1]),max(combRange[,2]))
+       p<- seq(from= supp[1], to =supp[2], by= step)
+       f <- interpfunc(bins[[i]],binCounts[[i]])
+       g <- interpfunc(bins[[j]],binCounts[[j]])
        dist<-sum(log((f(p)+me)/(g(p)+me))*f(p))*step
        if(symmetrize)
        {
           dist <- (dist +  sum(log((g(p)+me)/(f(p)+me))*g(p))*step)/2
-
        }  
       return(dist )   
     }
-    
+   
    rvec<-rep(NA, nr*(nr-1)/2)
    ct <- 1
    for(i in 1:(nr-1)){ 
        for(j in (i+1):nr) {
-          
-           rvec[ct] <- appfun(x[i,], x[j,])
+           rvec[ct] <- appfun(x,bins,binCounts,binWidth,i,j)
            ct <- ct+1	   
        }
    }
@@ -85,37 +85,42 @@ function(x,gridsize=NULL,symmetrize = FALSE, diag = FALSE,upper=FALSE){
       class(f) <- "dfun"
       f
   }
-  
-  distfun <- function(x, y)
+
+  datRange <- matrix(ncol=2,nrow=n)
+  binWidth <- vector(length=n)
+  bins <- list()
+  binCounts <-list()
+
+  nc <- unlist(lapply(x,length))
+  for( i in 1:n){
+        if(nc[i] >10000){
+			  dat <- sample(x[[i]],nc[i]*0.1)
+		}else{
+			  dat <- x[[i]]
+		}
+        datRange[i,] <- range(dat)
+		binWidth[i] <- dpih(dat,gridsize=if(is.null(gridsize)) 
+											max(401,length(dat)/10) 
+										else girdsize)
+        bins[[i]] <- seq(datRange[i,1]-0.1, datRange[i,2]+0.1+binWidth[i], 
+						 by=binWidth[i])
+        binCounts[[i]] <- KernSmooth:::linbin(x[[i]],bins[[i]],truncate=T)/
+                                    (nc[i]*binWidth[i])
+	}   
+ 
+  distfun <- function(x,bins,binCounts,binWidth,i,j)
   {   
-       h1 <- dpih(x,gridsize=if(is.null(gridsize))
-                                 max(401,length(x)/5)
-                             else
-                                 gridsize)
-       h2 <- dpih(y,gridsize=if(is.null(gridsize)) 
-			         max(401,length(y)/5)
-                             else
-                                 gridsize)
-
-       nc1<- length(x)
-       bins1 <- seq(min(x)-0.1, max(x)+0.1+h1, by=h1)
-       temp1 <- KernSmooth:::linbin(x,bins1,truncate=T)/(nc1*h1)
-       f <- interpfunc(bins1,temp1)
-
-       nc2 <-length(y)
-       bins2 <- seq(min(y)-0.1, max(y)+0.1+h2, by=h2)     
-       temp2 <- KernSmooth:::linbin(y,bins2,truncate=T)/(nc2*h2)
-       g<- interpfunc( bins2 ,temp2)
-       
-       step <- min(c(h1,h2))
-       comb <- c(x,y)
-       supp <- c(min(comb),max(comb))
-       p<- seq(from= supp[1], to =supp[2], by= step)        
+       step <- min(binWidth[i],binWidth[j])
+       combRange <- datRange[c(i,j),]
+       supp <- c(min(combRange[,1]),max(combRange[,2]))
+       p<- seq(from= supp[1], to =supp[2], by= step)
+       f <- interpfunc(bins[[i]],binCounts[[i]])
+       g <- interpfunc(bins[[j]],binCounts[[j]])
        dist<-sum(log((f(p)+me)/(g(p)+me))*f(p))*step
+
        if(symmetrize)
        {
 	    dist <- (dist +  sum(log((g(p)+me)/(f(p)+me))*g(p))*step)/2
-  
        }
        return(dist)
   }
@@ -125,7 +130,7 @@ function(x,gridsize=NULL,symmetrize = FALSE, diag = FALSE,upper=FALSE){
   for(i in 1:(n-1))
       for(j in (i+1):n) {
 	  if(!is.na(x[[i]]) && !is.na(x[[j]]))
-              	ans[ct] <- distfun(x[[i]], x[[j]])
+              	ans[ct] <- distfun(x,bins,binCounts,binWidth,i,j)
 	  else
 	 	ans[ct]=NA
 		ct <- ct+1
