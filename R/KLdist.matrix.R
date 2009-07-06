@@ -98,15 +98,15 @@ function(x,gridsize=NULL,symmetrize = FALSE, diag = FALSE,upper=FALSE){
 		}else{
 			  dat <- x[[i]]
 		}
-        datRange[i,] <- range(dat)
-		binWidth[i] <- dpih(dat,gridsize=if(is.null(gridsize)) 
-											max(401,length(dat)/10) 
-										else girdsize)
-        bins[[i]] <- seq(datRange[i,1]-0.1, datRange[i,2]+0.1+binWidth[i], 
+        if(!all(is.na(dat))){
+			datRange[i,] <- range(dat)
+			binWidth[i] <- dpih(dat,gridsize=if(is.null(gridsize))	max(401,length(dat)/10) else gridsize)
+        	bins[[i]] <- seq(datRange[i,1]-0.1, datRange[i,2]+0.1+binWidth[i], 
 						 by=binWidth[i])
-        binCounts[[i]] <- KernSmooth:::linbin(x[[i]],bins[[i]],truncate=T)/
-                                    (nc[i]*binWidth[i])
-	}   
+        	binCounts[[i]] <- KernSmooth:::linbin(x[[i]],bins[[i]],truncate=T)/
+                                   (nc[i]*binWidth[i])
+	     }
+  }   
  
   distfun <- function(x,bins,binCounts,binWidth,i,j)
   {   
@@ -124,7 +124,8 @@ function(x,gridsize=NULL,symmetrize = FALSE, diag = FALSE,upper=FALSE){
        }
        return(dist)
   }
-      
+     
+
   ans<-rep(NA, n*(n-1)/2)
   ct <- 1
   for(i in 1:(n-1))
