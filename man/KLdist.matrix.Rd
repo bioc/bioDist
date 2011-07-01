@@ -22,18 +22,20 @@ KLdist.matrix(x, \dots)
  If x is an object of a class derived from eSet (ExpressionSet,SnpSet etc),
 then the values returned by the \code{exprs} function are used.}
   \item{\dots}{arguments passed to \code{KLdist.matrix}:
-    \itemize{
-      \item{gridsize}{number of grid points used to select the optimal bin 
-	  width of the histogram used to estimate density. If no value is 
-	  supplied, the grid size is calculated internally; default is NULL
-      .} 
-      \item{symmetrize}{if TRUE, then symmetrize; default is FALSE.}
-      \item{diag}{if TRUE, then the diagonal of the distance matrix will be
-      displayed; default is FALSE.} 
-      \item{upper}{if TRUE, then the upper triangle of the distance matrix
-      will be displayed; default is FALSE.} 
-      \item{sample}{for eSet methods: if TRUE, then the distances are
-      computed between samples, otherwise, between features; ;default is TRUE.}
+    \describe{
+      \item{\code{gridsize}}{the number of grid points used to select the 
+             optimal bin width of the histogram used to estimate density. 
+             If no value is supplied, the grid size is calculated internally; 
+             default is \code{NULL}.} 
+      \item{\code{symmetrize}}{if \code{TRUE}, then symmetrize; the
+         default is \code{FALSE}.}
+      \item{\code{diag}}{if \code{TRUE}, then the diagonal of the distance 
+           matrix will be displayed; the default is \code{FALSE}.} 
+      \item{\code{upper}}{if \code{TRUE}, then the upper triangle of the 
+         distance matrix will be displayed; default is \code{FALSE}.} 
+      \item{\code{sample}}{for eSet methods: if \code{TRUE}, then the 
+        distances are computed between samples, otherwise, between features; 
+          the default is \code{TRUE}.}
     }
   }
 }
