@@ -25,9 +25,9 @@ setMethod("KLdist.matrix", signature=signature("matrix"),
         if(nc >10000)  dat <- sample(x[i,],nc*0.1)
         else           dat <- x[i,]
         datRange[i,] <- range(dat)
-		binWidth[i] <- dpih(dat,gridsize=if(is.null(gridsize)) 
-											max(401,length(dat)/10) 
-										else girdsize)
+		binWidth[i] <- dpih(dat, gridsize=if(is.null(gridsize))
+				max(401,length(dat)/10)
+						else gridsize)
         bins[[i]] <- seq(datRange[i,1]-0.1, datRange[i,2]+0.1+binWidth[i], 
 						 by=binWidth[i])
         binCounts[[i]] <- KernSmooth:::linbin(x[i,],bins[[i]],truncate=T)/
