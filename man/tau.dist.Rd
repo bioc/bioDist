@@ -12,9 +12,6 @@
 \usage{
 tau.dist(x)
 }
-\synopsis{
-tau.dist(x, \dots)
-}
 \arguments{
   \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
   \item{\dots}{arguments passed to \code{tau.dist}:
