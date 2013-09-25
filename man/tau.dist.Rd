@@ -10,11 +10,11 @@
  \code{dist} class.
 }
 \usage{
-tau.dist(x)
+tau.dist(x, ...)
 }
 \arguments{
   \item{x}{n by p matrix or ExpressionSet; if x is an ExpressionSet, then the function uses its 'exprs' slot.}
-  \item{\dots}{arguments passed to \code{tau.dist}:
+  \item{...}{arguments passed to \code{tau.dist}:
     \itemize{
       \item{abs}{if TRUE, then 1-|TAU| else 1-TAU; default is TRUE.}
       \item{diag}{if TRUE, then the diagonal of the distance matrix will be
