@@ -1,6 +1,6 @@
 Package: bioDist
 Title: Different distance measures
-Version: 1.37.0
+Version: 1.37.1
 Author: B. Ding, R. Gentleman and Vincent Carey
 Description: A collection of software tools for calculating distance
         measures.
@@ -9,4 +9,4 @@ Maintainer: Bioconductor Package Maintainer
 License: Artistic-2.0
 Depends: R (>= 2.0), methods, Biobase,KernSmooth
 Suggests: locfit
-biocViews: Software
+biocViews: Clustering, Classification
