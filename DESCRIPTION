@@ -1,6 +1,6 @@
 Package: bioDist
 Title: Different distance measures
-Version: 1.41.0
+Version: 1.42.0
 Author: B. Ding, R. Gentleman and Vincent Carey
 Description: A collection of software tools for calculating distance
         measures.
